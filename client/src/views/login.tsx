@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TextInput, Button, StyleSheet, Text, View } from "react-native"
+import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
 
 // type Props = {};
 export default class Login extends React.Component {
@@ -18,25 +18,39 @@ export default class Login extends React.Component {
         <Text style={styles.continue}>sign in to continue to Vchat.</Text>
         <TextInput
         style={styles.username}
-        onChangeText={(username) => this.setState({username})}
+        onChangeText={username => this.setState({username})}
         placeholder={'Username'}
         autoCapitalize={'none'}
         placeholderTextColor={'#AAA'}
+        underlineColorAndroid={'transparent'}
         />
         <TextInput
         style={styles.password}
-        onChangeText={(username) => this.setState({username})}
+        onChangeText={password => this.setState({password})}
         placeholder={'Password'}
         autoCapitalize={'none'}
         placeholderTextColor={'#AAA'}
+        secureTextEntry={true}
+        underlineColorAndroid={'transparent'}
+        keyboardType={'numeric'}
         />
-        <Text style={styles.login}>Login</Text>
+        <TouchableOpacity style={styles.loginBox} activeOpacity={0.7} onPress={() => this.login()}>
+          <Text style={styles.login}>Login</Text>
+        </TouchableOpacity>
         <View style={styles.signUpBox}>
           <Text style={styles.signUpText}>Don't have an account?</Text>
-          <Text style={styles.signUp}> Sign up</Text>
+          <TouchableOpacity activeOpacity={0.7} onPress={() => this.signUp()}>
+            <Text style={styles.signUp}> Sign up</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
+  }
+  login():void {
+    console.log(1)
+  }
+  signUp():void {
+    console.log(1)
   }
 }
 
@@ -83,7 +97,11 @@ const styles = StyleSheet.create({
   login: {
     color: '#4BA0AA',
     fontSize: 23,
+    // marginBottom: 90,
+  },
+  loginBox: {
     marginBottom: 90,
+    width: 65
   },
   signUpBox: {
     flex: 1,

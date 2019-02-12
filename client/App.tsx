@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 
 import Login from './src/views/login'
 
