@@ -679,6 +679,14 @@
   resolved "http://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.5.8.tgz#8ae4e0ea205fe95c3901a5a1df7f66495e3a56ce"
   integrity sha1-iuTg6iBf6Vw5AaWh339mSV46Vs4=
 
+"@types/react-native@*":
+  version "0.57.35"
+  resolved "http://registry.npm.taobao.org/@types/react-native/download/@types/react-native-0.57.35.tgz#362bbfa28a5700bac6fd814f8cb4aae1521cd9d3"
+  integrity sha1-Niu/oopXALrG/YFPjLSq4VIc2dM=
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/react" "*"
+
 "@types/react-native@^0.57.34":
   version "0.57.34"
   resolved "http://registry.npm.taobao.org/@types/react-native/download/@types/react-native-0.57.34.tgz#f15873386c4eab3accb536c49cef594634c0eafb"
@@ -686,6 +694,14 @@
   dependencies:
     "@types/prop-types" "*"
     "@types/react" "*"
+
+"@types/react-navigation@^3.0.1":
+  version "3.0.1"
+  resolved "http://registry.npm.taobao.org/@types/react-navigation/download/@types/react-navigation-3.0.1.tgz#374db42a441f4fc50cc0c86a399e41ce4680bfd3"
+  integrity sha1-N020KkQfT8UMwMhqOZ5BzkaAv9M=
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
 
 "@types/react-test-renderer@^16.8.0":
   version "16.8.0"
