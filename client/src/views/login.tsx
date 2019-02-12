@@ -1,8 +1,11 @@
 import * as React from "react"
 import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
-
+import { NavigationActions } from 'react-navigation';
 // type Props = {};
-export default class Login extends React.Component {
+interface Props {
+  navigation: any
+}
+export default class Login extends React.Component <Props> {
   constructor(props:any) {
     super(props);
     this.state = {
@@ -48,6 +51,7 @@ export default class Login extends React.Component {
   }
   login():void {
     console.log(1)
+    this.props.navigation.navigate('Chats')
   }
   signUp():void {
     console.log(1)
