@@ -4,7 +4,7 @@ import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-nativ
 interface Props {
   navigation: any
 }
-export default class Chats extends React.Component<Props,any> {
+export default class Contacts extends React.Component<Props,any> {
   constructor(props:any) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ export default class Chats extends React.Component<Props,any> {
     return (
       <View>
         <Text>
-          chats
+          Contacts
         </Text>
       </View>
     );

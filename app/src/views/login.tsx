@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation';
 interface Props {
   navigation: any
 }
-export default class Login extends React.Component <Props> {
+export default class Login extends React.Component<Props,any> {
   constructor(props:any) {
     super(props);
     this.state = {
