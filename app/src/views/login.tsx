@@ -51,7 +51,7 @@ export default class Login extends React.Component<Props,any> {
   }
   login():void {
     console.log(1)
-    this.props.navigation.navigate('Chats')
+    this.props.navigation.navigate('Home')
   }
   signUp():void {
     console.log(1)
