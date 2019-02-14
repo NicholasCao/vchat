@@ -1,6 +1,8 @@
 import * as React from "react"
 import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
 
+import ChatBox from '../compoents/chatBox' 
+
 interface Props {
   navigation: any
 }
@@ -12,11 +14,11 @@ export default class Chats extends React.Component<Props,any> {
   }
   render():React.ReactNode {
     return (
-      <View>
-        <Text>
-          chats
-        </Text>
-      </View>
+      <ChatBox
+        title='nicholas'
+        lastMessage='hello'
+        lastTime='10:04PM'
+      />
     );
   }
 }
