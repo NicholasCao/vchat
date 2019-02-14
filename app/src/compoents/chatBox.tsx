@@ -1,6 +1,5 @@
 import * as React from "react"
-import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
-import SvgUri from 'react-native-svg-uri';
+import { TextInput, TouchableHighlight, StyleSheet, Text, View } from "react-native"
 import Svg from './svg'
 interface Props {
   title: string,
@@ -18,32 +17,48 @@ export default class ChatBox extends React.Component<Props,any> {
   }
   render():React.ReactNode {
     return (
-      <View>
-        <Svg icon="avatar" size={48}/>
-        <SvgUri
-          width="48"
-          height="48"
-          source={require('../../static/svg/avatar.svg')}
-        />
-        <View style={styles.head}>
-          <Text style={styles.title}>
-            {this.props.title}
-          </Text>
-          <Text style={styles.lastTime}>
-            {this.props.lastTime}
-          </Text>
+      <TouchableHighlight onPress={this.chat} underlayColor={'#E8E8E8'}>
+        <View style={styles.container}>
+          <View style={styles.avater}>
+            <Svg icon="avatar" size={48}/>
+          </View>
+          <View style={styles.detailBox}>
+            <View style={styles.head}>
+              <Text style={styles.title}>
+                {this.props.title}
+              </Text>
+              <Text style={styles.lastTime}>
+                {this.props.lastTime}
+              </Text>
+            </View>
+            <View style={styles.lastMessageBox}>
+              <Text style={styles.lastMessage}>
+                {this.props.lastMessage}
+              </Text>
+            </View>
+          </View>
         </View>
-        <View style={styles.lastMessageBox}>
-          <Text style={styles.lastMessage}>
-            {this.props.lastMessage}
-          </Text>
-        </View>
-      </View>
+      </TouchableHighlight>
     );
+  }
+  chat():void {
+
   }
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  avater: {
+    paddingLeft: 15
+  },
+  detailBox: {
+    padding: 15,
+    paddingBottom: 0,
+    flex: 1
+  },
   head: {
     // flex: 1,
     flexDirection: 'row'
@@ -57,8 +72,9 @@ const styles = StyleSheet.create({
     color: '#888'
   },
   lastMessageBox: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#BBB'
+    borderBottomWidth: .3,
+    borderBottomColor: '#BBB',
+    paddingBottom: 10,
   },
   lastMessage: {
     fontSize: 16
