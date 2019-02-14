@@ -1,6 +1,7 @@
 import * as React from "react"
 import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
-
+import SvgUri from 'react-native-svg-uri';
+import Svg from './svg'
 interface Props {
   title: string,
   avatar?: string,
@@ -18,6 +19,12 @@ export default class ChatBox extends React.Component<Props,any> {
   render():React.ReactNode {
     return (
       <View>
+        <Svg icon="avatar" size={48}/>
+        <SvgUri
+          width="48"
+          height="48"
+          source={require('../../static/svg/avatar.svg')}
+        />
         <View style={styles.head}>
           <Text style={styles.title}>
             {this.props.title}

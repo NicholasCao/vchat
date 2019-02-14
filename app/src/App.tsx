@@ -19,8 +19,8 @@ const TabNavigator = createBottomTabNavigator({
 });
 
 const App = createStackNavigator({
+  Home: {screen: TabNavigator},
   Login: {screen: Login},
-  Home: {screen: TabNavigator}
 }, {
   headerMode: 'none', // 此参数设置不渲染顶部的导航条
 })

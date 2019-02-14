@@ -7,10 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/react-native-svg-uri": "^1.2.3",
     "react": "16.6.3",
     "react-native": "0.58.4",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-svg": "^9.2.4",
+    "react-native-svg-uri": "^1.2.3",
     "react-navigation": "^3.2.1"
   },
   "devDependencies": {
