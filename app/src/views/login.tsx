@@ -3,7 +3,7 @@ import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-nativ
 import { NavigationActions } from 'react-navigation';
 // type Props = {};
 interface Props {
-  navigation: any
+  navigation?: any
 }
 export default class Login extends React.Component<Props,any> {
   constructor(props:any) {

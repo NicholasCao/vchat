@@ -1,15 +1,16 @@
 import * as React from "react"
 import { TextInput, TouchableHighlight, StyleSheet, Text, View } from "react-native"
+import { withNavigation } from 'react-navigation';
 import Svg from './svg'
-interface Props {
-  title: string,
-  avatar?: string,
-  lastMessage: string,
-  lastTime: string,
-  isGroupChat?: boolean,
-  navigation?: any
-}
-export default class ChatBox extends React.Component<Props,any> {
+// interface Props {
+//   title: string,
+//   avatar?: string,
+//   lastMessage: string,
+//   lastTime: string,
+//   isGroupChat?: boolean,
+//   navigation?: any
+// }
+class ChatBox extends React.Component<any,any> {
   constructor(props:any) {
     super(props);
     this.state = {
@@ -17,7 +18,7 @@ export default class ChatBox extends React.Component<Props,any> {
   }
   render():React.ReactNode {
     return (
-      <TouchableHighlight onPress={this.chat} underlayColor={'#E8E8E8'}>
+      <TouchableHighlight onPress={() => this.chat()} underlayColor={'#E8E8E8'}>
         <View style={styles.container}>
           <View style={styles.avater}>
             <Svg icon="avatar" size={48}/>
@@ -42,7 +43,7 @@ export default class ChatBox extends React.Component<Props,any> {
     );
   }
   chat():void {
-
+    this.props.navigation.navigate('Chating')
   }
 }
 
@@ -60,7 +61,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   head: {
-    // flex: 1,
     flexDirection: 'row'
   },
   title: {
@@ -80,3 +80,5 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 })
+
+export default withNavigation(ChatBox)

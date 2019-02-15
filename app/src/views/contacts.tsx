@@ -4,7 +4,7 @@ import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-nativ
 import Svg from '../compoents/svg'
 
 interface Props {
-  navigation: any
+  navigation?: any
 }
 export default class Contacts extends React.Component<Props,any> {
   static navigationOptions = {

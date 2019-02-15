@@ -2,7 +2,7 @@ import * as React from "react"
 import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
 
 interface Props {
-  navigation: any
+  navigation?: any
 }
 export default class Profile extends React.Component<Props,any> {
   constructor(props:any) {

@@ -5,7 +5,7 @@ import ChatBox from '../compoents/chatBox'
 import Svg from '../compoents/svg'
 
 interface Props {
-  navigation: any
+  navigation?: any
 }
 
 export default class Chats extends React.Component<Props,any> {
@@ -25,9 +25,9 @@ export default class Chats extends React.Component<Props,any> {
   render():React.ReactNode {
     return (
       <ChatBox
-        title='nicholas'
-        lastMessage='hello'
-        lastTime='10:04PM'
+        title={'Nicholas'}
+        lastMessage={'hello'}
+        lastTime={'10:04PM'}
       />
     );
   }
