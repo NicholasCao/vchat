@@ -8,7 +8,7 @@ import Chats from './views/chats'
 import Contacts from './views/contacts'
 import Discover from './views/discover'
 import Me from './views/me'
-
+import Svg from './compoents/svg'
 type Props = {};
 
 const TabNavigator = createBottomTabNavigator({
@@ -16,6 +16,12 @@ const TabNavigator = createBottomTabNavigator({
   Contacts,
   Discover,
   Me
+},{
+  initialRouteName: 'Chats',
+  backBehavior: 'none',
+  tabBarOptions: {
+    showLabel: false
+  },
 });
 
 const App = createStackNavigator({
