@@ -2,14 +2,14 @@ import * as React from "react"
 import { TextInput, TouchableHighlight, StyleSheet, Text, View } from "react-native"
 import { withNavigation } from 'react-navigation';
 import Svg from './svg'
-// interface Props {
-//   title: string,
-//   avatar?: string,
-//   lastMessage: string,
-//   lastTime: string,
-//   isGroupChat?: boolean,
-//   navigation?: any
-// }
+interface Props {
+  title: string,
+  avatar?: string,
+  lastMessage: string,
+  lastTime: string,
+  isGroupChat?: boolean,
+  navigation?: any
+}
 class ChatBox extends React.Component<any,any> {
   constructor(props:any) {
     super(props);
@@ -80,5 +80,5 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 })
-
-export default withNavigation(ChatBox)
+//声明高阶组件
+export default withNavigation<Props>(ChatBox)

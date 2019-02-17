@@ -2,7 +2,7 @@ import * as React from "react"
 import { TextInput, TouchableHighlight, StyleSheet, Text, View, Image } from "react-native"
 
 import Svg from '../compoents/svg'
-
+import Message from '../compoents/message'
 interface Props {
   navigation: any
 }
@@ -29,7 +29,7 @@ export default class Me extends React.Component<Props,any> {
           </TouchableHighlight>
         </View>
         <View style={styles.chat}>
-          <View style={styles.messageBox}>
+          {/* <View style={styles.messageBox}>
             <Image
               style={styles.avater}
               source={require('../../static/avatar.png')}
@@ -37,7 +37,23 @@ export default class Me extends React.Component<Props,any> {
             <View style={styles.message}>
               <Text>what's up</Text>
             </View>
-          </View>
+          </View> */}
+          <Message
+            message={'hello'}
+            isMine={false}
+          />
+          <Message
+            message={'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}
+            isMine={false}
+          />
+          <Message
+            message={'hello'}
+            isMine={true}
+          />
+          <Message
+            message={'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}
+            isMine={true}
+          />
         </View>
         <View style={styles.inputBox}>
           <Svg icon={'speech'} size={30}></Svg>
@@ -80,7 +96,7 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   chat: {
-
+    padding: 5
   },
   messageBox: {
     flexDirection: 'row'
@@ -100,13 +116,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 'auto',
-    borderColor: '#000',
-    borderWidth: 1,
+    borderTopColor: '#f5f5f5',
+    borderTopWidth: 2,
     padding: 10,
   },
   textEmoji: {
     borderRadius: 18,
-    backgroundColor: '#F1F5F8',
+    backgroundColor: '#F3F5F6',
     flexDirection: 'row',
     flex: 1,
     marginLeft: 10,

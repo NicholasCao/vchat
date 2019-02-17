@@ -1,10 +1,12 @@
 import * as React from "react"
 import { Image, TouchableOpacity, StyleSheet, Text, View } from "react-native"
-
-// interface Props {
-//   navigation?: any
-// }
-export default class Message extends React.Component<any,any> {
+import { withNavigation } from 'react-navigation';
+interface Props {
+  message: string,
+  isMine: boolean,
+  navigation?: any
+}
+class Message extends React.Component<any,any> {
   constructor(props:any) {
     super(props);
     this.state = {
@@ -14,10 +16,10 @@ export default class Message extends React.Component<any,any> {
     return (
       <View style={styles.messageBox}>
       <Image
-        style={styles.avater}
+        style={this.props.isMine?styles.myAvater:styles.avater}
         source={require('../../static/avatar.png')}
       />
-      <View style={styles.message}>
+      <View style={this.props.isMine?styles.myMessage:styles.message}>
         <Text>{this.props.message}</Text>
       </View>
     </View>
@@ -27,17 +29,34 @@ export default class Message extends React.Component<any,any> {
 
 const styles = StyleSheet.create({
   messageBox: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    margin: 10
+  },
+  myAvater: {
+    display: 'none'
   },
   avater: {
     width: 40,
     height: 40,
-    padding: 8
+    padding: 8,
+    paddingLeft: 0,
+  },
+  myMessage: {
+    marginLeft: 'auto',
+    padding: 8,
+    borderRadius: 10,
+    borderTopRightRadius: 3,
+    backgroundColor: '#90EE90',
+    maxWidth: 250
   },
   message: {
     padding: 8,
     borderRadius: 10,
     borderTopLeftRadius: 3,
-    backgroundColor: '#eee'
+    backgroundColor: '#eee',
+    marginLeft: 10,
+    maxWidth: 250
   },
 })
+
+export default withNavigation<Props>(Message)
