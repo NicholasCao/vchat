@@ -1,6 +1,7 @@
 import * as React from "react"
 import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
 
+import StatusBar from '../compoents/statusBar'
 import ChatBox from '../compoents/chatBox' 
 import Svg from '../compoents/svg'
 
@@ -23,12 +24,16 @@ export default class Chats extends React.Component<Props,any> {
     };
   }
   render():React.ReactNode {
+    // StatusBar.setBackgroundColor('#fff')
     return (
-      <ChatBox
-        title={'Nicholas'}
-        lastMessage={'hello'}
-        lastTime={'10:04PM'}
-      />
+      <View>
+        <StatusBar/>
+        <ChatBox
+          title={'Nicholas'}
+          lastMessage={'hello'}
+          lastTime={'10:04PM'}
+        />
+      </View>
     );
   }
 }
