@@ -15,14 +15,14 @@ class Message extends React.Component<any,any> {
   render():React.ReactNode {
     return (
       <View style={styles.messageBox}>
-      <Image
-        style={this.props.isMine?styles.myAvater:styles.avater}
-        source={require('../../static/avatar.png')}
-      />
-      <View style={this.props.isMine?styles.myMessage:styles.message}>
-        <Text>{this.props.message}</Text>
+        <Image
+          style={this.props.isMine?styles.myAvater:styles.avater}
+          source={require('../../static/avatar.png')}
+        />
+        <View style={this.props.isMine?styles.myMessage:styles.message}>
+          <Text>{this.props.message}</Text>
+        </View>
       </View>
-    </View>
     );
   }
 }
