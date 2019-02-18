@@ -7,7 +7,6 @@ const svgDir = path.resolve(__dirname, './static/svg');
 function readfile(filename) {
   return new Promise((resolve, reject) => {
     fs.readFile(path.join(svgDir, filename), 'utf8', function(err, data) {
-      console.log(data.replace(/<\?xml.*?\?>|<\!--.*?-->|<!DOCTYPE.*?>/g, ''));
       if (err) reject(err);
       resolve({
         [filename.slice(0, filename.lastIndexOf('.'))]: data,
