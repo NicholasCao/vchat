@@ -10,6 +10,8 @@ import Discover from './views/discover'
 import Me from './views/me'
 import Chating from './views/chating'
 import Profile from './views/profile'
+import Moments from './views/moments'
+
 type Props = {};
 
 const TabNavigator = createBottomTabNavigator({
@@ -29,7 +31,8 @@ const App = createStackNavigator({
   Home: {screen: TabNavigator},
   Login: {screen: Login},
   Chating: {screen: Chating},
-  Profile: {screen: Profile}
+  Profile: {screen: Profile},
+  Moments: {screen: Moments}
 }, {
   headerMode: 'none', // 此参数设置不渲染顶部的导航条
 })

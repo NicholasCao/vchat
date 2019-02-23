@@ -26,7 +26,7 @@ export default class Discover extends React.Component<Props,any> {
         <Text>
           Discover
         </Text>
-        <TouchableHighlight onPress={() => this.props.navigation.goBack()} underlayColor={'#DDD'}>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('Moments')} underlayColor={'#DDD'}>
           <View style={styles.momentsBox}>
             <Svg icon={'moments'} size={22}/>
             <Text style={styles.momentsText}>
