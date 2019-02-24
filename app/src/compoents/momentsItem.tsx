@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Dimensions, Image, TouchableOpacity, StyleSheet, Text, View } from "react-native"
-
+import { Dimensions, Image, TouchableOpacity, TouchableHighlight, StyleSheet, Text, View } from "react-native"
+import Svg from './svg'
 const { width, height } = Dimensions.get('window')
 
 interface Props {
@@ -12,6 +12,7 @@ export default class MomentsItem extends React.Component<any,any> {
   constructor(props:any) {
     super(props)
     this.state = {
+      show: false
     }
   }
 
@@ -49,6 +50,39 @@ export default class MomentsItem extends React.Component<any,any> {
     )
   }
 
+  renderLikeAndComment():React.ReactNode {
+    return this.state.show ? (
+      <View style={styles.bottomBox}>
+        <View style={styles.likeContainer}>
+          <TouchableHighlight onPress={() => 1} underlayColor={'#282828'}>
+            <View style={styles.like}>
+              <View style={styles.likeIcon}>
+                <Svg icon={'like'} size={20}/>
+              </View>
+              <Text style={styles.moreText}>Like</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => 1} underlayColor={'#282828'}>
+            <View style={styles.comment}>
+              <View style={styles.commentIcon}>
+                <Svg icon={'comment'} size={18}/>
+              </View>
+              <Text style={styles.moreText}>Comment</Text>
+            </View>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.tail}></View>
+      </View>) : (
+      <View style={styles.hide}>
+      </View>
+    )
+  }
+  onPressMore():void {
+    this.setState((previousState:any) => {
+      return { show: !previousState.show };
+    });
+  }
+
   render():React.ReactNode {
     return (
       <View style={styles.container}>
@@ -61,6 +95,15 @@ export default class MomentsItem extends React.Component<any,any> {
             大家好，我系渣渣辉
           </Text>
           {this.renderImages()}
+          <View style={styles.bottomContainer}>
+            <Text style={styles.time}>Yesterday</Text>
+            {this.renderLikeAndComment()}
+            <TouchableHighlight style={{...styles.more, marginLeft: this.state.show?0:'auto'}} 
+              onPress={() => this.onPressMore()} 
+              underlayColor={'#EEE'}>
+              <Svg icon={'more2'} size={22}/>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     )
@@ -70,7 +113,7 @@ export default class MomentsItem extends React.Component<any,any> {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingBottom: 15,
+    // paddingBottom: 15,
     borderBottomColor: '#eee',
     borderBottomWidth: .8,
     maxWidth: width,
@@ -83,7 +126,10 @@ const styles = StyleSheet.create({
     borderRadius: 3
   },
   detail: {
-
+    // borderColor: '#000',
+    // borderWidth: 1.8,
+    flex: 1,
+    paddingRight: 15
   },
   username: {
     fontSize: 18,
@@ -91,16 +137,87 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color: '#333'
+    color: '#333',
+  },
+  bottomContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  time: {
+    alignSelf: 'flex-start',
+    color: '#787878',
+    fontSize: 13,
+    position: 'relative',
+    top: 13
+  },
+  bottomBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 'auto'
+  },
+  likeContainer: {
+    marginLeft: 'auto',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#2F2F2F',
+    borderRadius: 5,
+    marginRight: -2,
+    paddingTop: 4,
+    paddingBottom: 4
+  },
+  like: {
+    flexDirection: 'row',
+    padding: 8,
+    paddingRight: 10,
+    paddingLeft: 25,
+    borderRightWidth: 1,
+    borderRightColor: '#282828',
+  },
+  comment: {
+    flexDirection: 'row',
+    padding: 8,
+    paddingLeft: 1,
+    paddingRight: 5,
+  },
+  likeIcon: {
+    marginRight: 4,
+    position: 'relative',
+    top: 2
+  },
+  commentIcon: {
+    marginRight: 4,
+    position: 'relative',
+    top: 3
+  },
+  moreText: {
+    color: '#FFF',
+    fontSize: 16,
+  },
+  tail: {
+    width: 0,
+    height: 0,
+    borderWidth: 7,
+    borderTopColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderLeftColor: '#2F2F2F',
+  },
+  more: {
+    backgroundColor: '#F6F6F6',
+    borderRadius: 3,
+    paddingLeft: 4,
+    paddingRight: 4,
+  },
+  hide: {
+    height: 46,
+    width: 200
   }
 })
 
 const imagesStyles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     marginTop: 10,
-    marginBottom: 7,
-    flexWrap: 'wrap'
+    marginBottom: 1,
   },
   imageRow: {
     flexDirection: 'row',
