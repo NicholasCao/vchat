@@ -17,7 +17,7 @@ class Message extends React.Component<any,any> {
       <View style={styles.messageBox}>
         <Image
           style={this.props.isMine?styles.myAvater:styles.avater}
-          source={require('../../static/avatar.png')}
+          source={require('../../static/avatar.jpg')}
         />
         <View style={this.props.isMine?styles.myMessage:styles.message}>
           <Text>{this.props.message}</Text>
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     height: 40,
     padding: 8,
     paddingLeft: 0,
+    borderRadius: 5
   },
   myMessage: {
     marginLeft: 'auto',

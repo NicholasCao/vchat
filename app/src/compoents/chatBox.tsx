@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TextInput, TouchableHighlight, StyleSheet, Text, View } from "react-native"
+import { Image, TextInput, TouchableHighlight, StyleSheet, Text, View } from "react-native"
 import { withNavigation } from 'react-navigation';
 import Svg from './svg'
 interface Props {
@@ -20,9 +20,7 @@ class ChatBox extends React.Component<any,any> {
     return (
       <TouchableHighlight onPress={() => this.chat()} underlayColor={'#E8E8E8'}>
         <View style={styles.container}>
-          <View style={styles.avater}>
-            <Svg icon="avatar" size={48}/>
-          </View>
+          <Image style={styles.avater} source={require('../../static/avatar.jpg')} />
           <View style={styles.detailBox}>
             <View style={styles.head}>
               <Text style={styles.title}>
@@ -53,7 +51,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avater: {
-    paddingLeft: 15
+    marginLeft: 15,
+    width: 48,
+    height: 48,
+    borderRadius: 6
   },
   detailBox: {
     padding: 15,

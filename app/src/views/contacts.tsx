@@ -28,7 +28,7 @@ export default class Contacts extends React.Component<Props,any> {
             <View>
               <Image
                 style={styles.avater}
-                source={require('../../static/avatar.png')}
+                source={require('../../static/avatar.jpg')}
               />
             </View>
             <Text style={styles.name}>
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
     padding: 8,
+    borderRadius: 4
   },
   name: {
     marginLeft: 10,
