@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TextInput, TouchableHighlight, StyleSheet, Text, View, Image } from "react-native"
+import { TextInput, TouchableHighlight, StyleSheet, Text, View, TouchableOpacity } from "react-native"
 
 import Svg from '../compoents/svg'
 import Message from '../compoents/message'
@@ -10,7 +10,35 @@ export default class Me extends React.Component<Props,any> {
   constructor(props:any) {
     super(props);
     this.state = {
+      messageList: [],
+      message: ''
     };
+  }
+  send():void {
+    this.setState((previousState:any) => { 
+      var messageList = previousState.messageList
+      messageList.push(this.state.message)
+      return { messageList }
+    })
+    this.setState({message: ''})
+  }
+  renderMessageList():React.ReactNode {
+    var messages:any[] = []
+    this.state.messageList.forEach((message:string, index:number) => {
+      messages.push(<Message key={index} message={message} isMine={true}/>)
+    })
+    return messages
+  }
+  renderAddOrSend():React.ReactNode {
+    return this.state.message === '' ? (
+      <TouchableOpacity activeOpacity={0.5} onPress={() => 1}>
+        <Svg icon={'add'} size={28}></Svg>
+      </TouchableOpacity>
+    ) : (
+      <TouchableOpacity activeOpacity={0.6} onPress={() => this.send()}>
+        <Svg icon={'send'} size={28}></Svg>
+      </TouchableOpacity>
+    )
   }
   render():React.ReactNode {
     return (
@@ -29,15 +57,6 @@ export default class Me extends React.Component<Props,any> {
           </TouchableHighlight>
         </View>
         <View style={styles.chat}>
-          {/* <View style={styles.messageBox}>
-            <Image
-              style={styles.avater}
-              source={require('../../static/avatar.png')}
-            />
-            <View style={styles.message}>
-              <Text>what's up</Text>
-            </View>
-          </View> */}
           <Message
             message={'hello'}
             isMine={false}
@@ -50,10 +69,7 @@ export default class Me extends React.Component<Props,any> {
             message={'hello'}
             isMine={true}
           />
-          <Message
-            message={'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}
-            isMine={true}
-          />
+          {this.renderMessageList()}
         </View>
         <View style={styles.inputBox}>
           <Svg icon={'speech'} size={30}></Svg>
@@ -61,12 +77,15 @@ export default class Me extends React.Component<Props,any> {
             <TextInput
               placeholder={'Type a message'}
               style={styles.input}
+              onChangeText={message => this.setState({message})}
+              value={this.state.message}
+              multiline={true}
             />
             <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'} style={styles.emoji}>
               <Svg icon={'emoji'} size={25}></Svg>
             </TouchableHighlight>
           </View>
-          <Svg icon={'add'} size={28}></Svg>
+          {this.renderAddOrSend()}
         </View>
       </View>
     );
@@ -133,7 +152,9 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     height: 35,
     width: 'auto',
-    flex: 1
+    flex: 1,
+    fontSize: 15
+    // textAlignVertical: 'top'
   },
   emoji: {
     padding: 5,
