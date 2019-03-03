@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   name: {
     marginLeft: 'auto',
     fontSize: 18,
-    color: '#fff',
+    color: '#FFF',
     paddingTop: 15
   },
   avatar: {

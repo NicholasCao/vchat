@@ -24,7 +24,6 @@ export default class Chats extends React.Component<Props,any> {
     };
   }
   render():React.ReactNode {
-    // StatusBar.setBackgroundColor('#fff')
     return (
       <View>
         <StatusBar/>

@@ -1,34 +1,50 @@
 import * as React from "react"
-import { TextInput, TouchableHighlight, StyleSheet, Text, View, TouchableOpacity } from "react-native"
+import { FlatList, TextInput, TouchableHighlight, StyleSheet, Text, View, TouchableOpacity } from "react-native"
 
 import Svg from '../compoents/svg'
 import Message from '../compoents/message'
+
+interface MessageItem {
+  message: string,
+  isMine: boolean
+}
 interface Props {
   navigation: any
 }
-export default class Me extends React.Component<Props,any> {
+interface State {
+  messageList: Array<MessageItem>,
+  message: string
+}
+export default class Me extends React.Component<Props,State> {
   constructor(props:any) {
     super(props);
     this.state = {
-      messageList: [],
+      messageList: [{message:'hello',isMine:false}],
       message: ''
     };
   }
   send():void {
     this.setState((previousState:any) => { 
       var messageList = previousState.messageList
-      messageList.push(this.state.message)
+      var newMessageItem:MessageItem = {
+        message: this.state.message,
+        isMine: true
+      }
+      messageList.push(newMessageItem)
       return { messageList }
     })
     this.setState({message: ''})
   }
-  renderMessageList():React.ReactNode {
-    var messages:any[] = []
-    this.state.messageList.forEach((message:string, index:number) => {
-      messages.push(<Message key={index} message={message} isMine={true}/>)
-    })
-    return messages
-  }
+  // renderMessageList():React.ReactNode {
+  //   var messages:any[] = []
+  //   this.state.messageList.forEach((messageItem:MessageItem, index:number) => {
+  //     messages.push(<Message key={index} message={messageItem.message} isMine={messageItem.isMine}/>)
+  //   })
+  //   return messages
+  // }
+  // renderMessageItem({item}) {
+  //   return (<Message message={item.message} isMine={item.isMine}/>)
+  // }
   renderAddOrSend():React.ReactNode {
     return this.state.message === '' ? (
       <TouchableOpacity activeOpacity={0.5} onPress={() => 1}>
@@ -57,19 +73,13 @@ export default class Me extends React.Component<Props,any> {
           </TouchableHighlight>
         </View>
         <View style={styles.chat}>
-          <Message
-            message={'hello'}
-            isMine={false}
+          {/* {this.renderMessageList()} */}
+          <FlatList
+            data={this.state.messageList}
+            extraData={this.state}
+            keyExtractor={(item:any, index:any) => index.toString()}
+            renderItem={({item}) => (<Message message={item.message} isMine={item.isMine}/>)}
           />
-          <Message
-            message={'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}
-            isMine={false}
-          />
-          <Message
-            message={'hello'}
-            isMine={true}
-          />
-          {this.renderMessageList()}
         </View>
         <View style={styles.inputBox}>
           <Svg icon={'speech'} size={30}></Svg>
@@ -80,6 +90,7 @@ export default class Me extends React.Component<Props,any> {
               onChangeText={message => this.setState({message})}
               value={this.state.message}
               multiline={true}
+              autoCapitalize={'none'}
             />
             <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'} style={styles.emoji}>
               <Svg icon={'emoji'} size={25}></Svg>
@@ -129,15 +140,16 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 10,
     borderTopLeftRadius: 3,
-    backgroundColor: '#eee'
+    backgroundColor: '#EEE'
   },
   inputBox: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 'auto',
-    borderTopColor: '#f5f5f5',
+    borderTopColor: '#F5F5F5',
     borderTopWidth: 2,
     padding: 10,
+    backgroundColor:'#FFF'
   },
   textEmoji: {
     borderRadius: 18,

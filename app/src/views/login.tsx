@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
+import { TextInput, TouchableOpacity, StyleSheet, Text, View, KeyboardAvoidingView } from "react-native"
 import { NavigationActions } from 'react-navigation';
 // type Props = {};
 interface Props {
@@ -19,24 +19,28 @@ export default class Login extends React.Component<Props,any> {
         <Text style={styles.head}>Vchat</Text>
         <Text style={styles.welcome}>Welcome back,</Text>
         <Text style={styles.continue}>sign in to continue to Vchat.</Text>
-        <TextInput
-          style={styles.username}
-          onChangeText={username => this.setState({username})}
-          placeholder={'Username'}
-          autoCapitalize={'none'}
-          placeholderTextColor={'#AAA'}
-          underlineColorAndroid={'transparent'}
-        />
-        <TextInput
-          style={styles.password}
-          onChangeText={password => this.setState({password})}
-          placeholder={'Password'}
-          autoCapitalize={'none'}
-          placeholderTextColor={'#AAA'}
-          secureTextEntry={true}
-          underlineColorAndroid={'transparent'}
-          keyboardType={'numeric'}
-        />
+        <KeyboardAvoidingView behavior="padding">
+          <TextInput
+            style={styles.username}
+            onChangeText={username => this.setState({username})}
+            placeholder={'Username'}
+            autoCapitalize={'none'}
+            placeholderTextColor={'#AAA'}
+            underlineColorAndroid={'transparent'}
+          />
+        </KeyboardAvoidingView>
+        <KeyboardAvoidingView behavior="padding">
+          <TextInput
+            style={styles.password}
+            onChangeText={password => this.setState({password})}
+            placeholder={'Password'}
+            autoCapitalize={'none'}
+            placeholderTextColor={'#AAA'}
+            secureTextEntry={true}
+            underlineColorAndroid={'transparent'}
+            keyboardType={'numeric'}
+          />
+        </KeyboardAvoidingView>
         <TouchableOpacity style={styles.loginBox} activeOpacity={0.7} onPress={() => this.login()}>
           <Text style={styles.login}>Login</Text>
         </TouchableOpacity>

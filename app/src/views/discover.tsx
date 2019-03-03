@@ -41,15 +41,15 @@ export default class Discover extends React.Component<Props,any> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#eee',
+    backgroundColor: '#EEE',
     flex: 1
   },
   momentsBox: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#ccc',
+    borderColor: '#CCC',
     borderWidth: 0.3
   },
   momentsText: {
