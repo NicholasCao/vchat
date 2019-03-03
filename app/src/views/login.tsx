@@ -65,8 +65,6 @@ export default class Login extends React.Component<Props,any> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     padding: 70,
     backgroundColor: '#FFF',
     paddingBottom: 40
@@ -99,13 +97,10 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     fontSize: 18,
     marginBottom: 70,
-    // borderColor: '#000',
-    // borderWidth: 1
   },
   login: {
     color: '#4BA0AA',
     fontSize: 23,
-    // marginBottom: 90,
   },
   loginBox: {
     marginBottom: 90,

@@ -13,7 +13,7 @@ export default class MyStatusBar extends React.Component<any,any> {
   }
   render():React.ReactNode {
     return (
-      <StatusBar barStyle={'dark-content'} backgroundColor="#fff" />
+      <StatusBar barStyle={'dark-content'} backgroundColor="#FFF" />
     );
   }
 }

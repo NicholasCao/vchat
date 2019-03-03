@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     // paddingBottom: 15,
-    borderBottomColor: '#eee',
+    borderBottomColor: '#EEE',
     borderBottomWidth: .8,
     maxWidth: width,
   },
@@ -126,8 +126,6 @@ const styles = StyleSheet.create({
     borderRadius: 3
   },
   detail: {
-    // borderColor: '#000',
-    // borderWidth: 1.8,
     flex: 1,
     paddingRight: 15
   },

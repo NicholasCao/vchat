@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Dimensions, Image, TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
 
-import Svg from '../compoents/svg'
 import MomentsItem from '../compoents/momentsItem'
 
 const { width, height } = Dimensions.get('window');

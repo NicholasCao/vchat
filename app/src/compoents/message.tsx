@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 10,
     borderTopLeftRadius: 3,
-    backgroundColor: '#eee',
+    backgroundColor: '#EEE',
     marginLeft: 10,
     maxWidth: 250
   },

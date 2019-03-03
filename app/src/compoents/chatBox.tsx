@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Image, TextInput, TouchableHighlight, StyleSheet, Text, View } from "react-native"
 import { withNavigation } from 'react-navigation';
-import Svg from './svg'
+
 interface Props {
   title: string,
   avatar?: string,
