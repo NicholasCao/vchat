@@ -19,7 +19,7 @@ export default class Me extends React.Component<Props,State> {
   constructor(props:any) {
     super(props);
     this.state = {
-      messageList: [{message:'hello',isMine:false}],
+      messageList: [{message:'hello',isMine:false},{message:'helloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',isMine:false}],
       message: ''
     };
   }

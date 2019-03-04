@@ -2,6 +2,7 @@ import * as React from "react"
 import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
 
 import StatusBar from '../compoents/statusBar'
+import Head from '../compoents/head'
 import ChatBox from '../compoents/chatBox' 
 import Svg from '../compoents/svg'
 
@@ -27,6 +28,7 @@ export default class Chats extends React.Component<Props,any> {
     return (
       <View>
         <StatusBar/>
+        <Head title='chats'/>
         <ChatBox
           title={'Nicholas'}
           lastMessage={'hello'}

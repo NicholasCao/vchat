@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     maxWidth: 250
   },
   message: {
+    marginTop: 5,
     padding: 8,
     borderRadius: 10,
     borderTopLeftRadius: 3,
