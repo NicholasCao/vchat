@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "svg": "node getSvg"
   },
   "dependencies": {
     "@types/react-native-svg-uri": "^1.2.3",
