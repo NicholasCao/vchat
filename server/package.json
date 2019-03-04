@@ -4,7 +4,9 @@
   "description": "",
   "main": "bin/www",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node dist/server.js",
+    "watch": "cross-env NODE_ENV=developmen nodemon --watch 'src/**/*' -e ts --exec 'ts-node' ./src/server.ts"
   },
   "author": "",
   "license": "MIT",
@@ -15,6 +17,8 @@
   },
   "devDependencies": {
     "@types/koa": "^2.0.48",
-    "@types/koa-router": "^7.0.39"
+    "@types/koa-router": "^7.0.39",
+    "nodemon": "^1.18.10",
+    "ts-node": "^8.0.2"
   }
 }
