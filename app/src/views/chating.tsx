@@ -19,7 +19,7 @@ export default class Me extends React.Component<Props,State> {
   constructor(props:any) {
     super(props);
     this.state = {
-      messageList: [{message:'hello',isMine:false},{message:'helloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',isMine:false}],
+      messageList: [{message:'hello',isMine:false},{message:'helloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',isMine:false}],
       message: ''
     };
   }
@@ -110,6 +110,9 @@ const styles = StyleSheet.create({
   head: {
     flexDirection: 'row',
     alignContent: 'center',
+    backgroundColor: '#EDEDED',
+    borderBottomWidth: .3,
+    borderBottomColor: '#CCC',
   },
   back: {
     padding: 12,
@@ -126,28 +129,17 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   chat: {
-    padding: 5
-  },
-  messageBox: {
-    flexDirection: 'row'
-  },
-  avater: {
-    width: 40,
-    height: 40,
-    padding: 8
-  },
-  message: {
-    padding: 8,
-    borderRadius: 10,
-    borderTopLeftRadius: 3,
-    backgroundColor: '#EEE'
+    padding: 5,
+    backgroundColor: '#FFF',
+    flex: 1,
+    // marginBottom: 1
   },
   inputBox: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 'auto',
-    borderTopColor: '#F5F5F5',
-    borderTopWidth: 2,
+    borderTopColor: '#EDEDED',
+    borderTopWidth: 1,
     padding: 10,
     backgroundColor:'#FFF'
   },

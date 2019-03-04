@@ -20,7 +20,7 @@ class Message extends React.Component<any,any> {
           source={require('../../static/avatar.jpg')}
         />
         <View style={this.props.isMine?styles.myMessage:styles.message}>
-          <Text>{this.props.message}</Text>
+          <Text style={styles.text}>{this.props.message}</Text>
         </View>
       </View>
     );
@@ -55,10 +55,14 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 10,
     borderTopLeftRadius: 3,
-    backgroundColor: '#EEE',
+    backgroundColor: '#F8F8F8',
     marginLeft: 10,
     maxWidth: 250
   },
+  text: {
+    color: '#333',
+    fontSize: 16,
+  }
 })
 
 export default withNavigation<Props>(Message)

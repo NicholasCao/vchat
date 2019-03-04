@@ -48,20 +48,21 @@ class ChatBox extends React.Component<any,any> {
 const styles = StyleSheet.create({
   container:{
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   avater: {
     marginLeft: 15,
+    marginRight: 15,
     width: 48,
     height: 48,
     borderRadius: 6
   },
   detailBox: {
-    padding: 15,
     paddingBottom: 0,
     flex: 1
   },
   head: {
+    paddingTop: 10,
     flexDirection: 'row'
   },
   title: {
@@ -70,11 +71,14 @@ const styles = StyleSheet.create({
   },
   lastTime: {
     marginLeft: 'auto',
-    color: '#888'
+    color: '#999',
+    marginRight: 15,
+    fontSize: 13
   },
   lastMessageBox: {
+    paddingRight: 15,
     borderBottomWidth: .3,
-    borderBottomColor: '#BBB',
+    borderBottomColor: '#CCC',
     paddingBottom: 10,
   },
   lastMessage: {

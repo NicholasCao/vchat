@@ -2,7 +2,7 @@ import * as React from "react"
 import { Image, TouchableHighlight, StyleSheet, Text, View } from "react-native"
 
 import Svg from '../compoents/svg'
-
+import Head from '../compoents/head'
 interface Props {
   navigation?: any
 }
@@ -23,6 +23,7 @@ export default class Contacts extends React.Component<Props,any> {
   render():React.ReactNode {
     return (
       <View>
+        <Head title='Contacts'/>
         <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
           <View style={styles.container}>
             <View>
@@ -45,23 +46,23 @@ const styles = StyleSheet.create({
   container:{
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    paddingLeft: 10,
     paddingBottom: 0
   },
   avater: {
-    width: 35,
-    height: 35,
-    padding: 8,
+    width: 36,
+    height: 36,
+    padding: 10,
     borderRadius: 4
   },
   name: {
     marginLeft: 10,
-    fontSize: 20,
+    fontSize: 18,
     color: '#333',
     borderBottomWidth: .3,
-    borderBottomColor: '#BBB',
-    paddingBottom: 10,
-    paddingTop: 10,
+    borderBottomColor: '#CCC',
+    paddingBottom: 12,
+    paddingTop: 12,
     flex: 1
   }
 })

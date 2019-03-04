@@ -28,11 +28,16 @@ export default class Chats extends React.Component<Props,any> {
     return (
       <View>
         <StatusBar/>
-        <Head title='chats'/>
+        <Head title='Vchat'/>
         <ChatBox
           title={'Nicholas'}
           lastMessage={'hello'}
           lastTime={'10:04PM'}
+        />
+        <ChatBox
+          title={'wzq'}
+          lastMessage={'hello'}
+          lastTime={'22:04PM'}
         />
       </View>
     );

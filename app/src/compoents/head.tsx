@@ -16,16 +16,14 @@ export default class ChatBox extends React.Component<Props,any> {
   render():React.ReactNode {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.avater}
-          source={require('../../static/avatar.jpg')}
-        />
         <Text style={styles.title}>{this.props.title}</Text>
         <View style={styles.icons}>
-          <TouchableHighlight style={styles.camera}>
-            <Svg icon={'camera'} size={22}/>
+        <TouchableHighlight style={styles.search}>
+            <Svg icon={'search'} size={20}/>
+        </TouchableHighlight>
+          <TouchableHighlight>
+            <Svg icon={'add'} size={22}/>
           </TouchableHighlight>
-          <Svg icon={'edit'} size={20}/>
         </View>
       </View>
     );
@@ -34,27 +32,23 @@ export default class ChatBox extends React.Component<Props,any> {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 20
-  },
-  avater: {
-    borderRadius: 20,
-    width: 40,
-    height: 40,
-    marginRight: 10
+    paddingLeft: 15,
+    backgroundColor: '#EDEDED'
   },
   title: {
     color: '#222',
-    fontSize: 30
+    fontSize: 18
   },
   icons: {
     marginLeft: 'auto',
-    marginRight: 25,
+    marginRight: 20,
     flexDirection: 'row'
   },
-  camera: {
-    marginRight: 30
+  search: {
+    marginRight: 35
   }
 })

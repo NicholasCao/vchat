@@ -2,7 +2,7 @@ import * as React from "react"
 import { TouchableHighlight, StyleSheet, Text, View } from "react-native"
 
 import Svg from '../compoents/svg'
-
+import Head from '../compoents/head'
 interface Props {
   navigation?: any
 }
@@ -23,9 +23,7 @@ export default class Discover extends React.Component<Props,any> {
   render():React.ReactNode {
     return (
       <View style={styles.container}>
-        <Text>
-          Discover
-        </Text>
+        <Head title='Discover'/>
         <TouchableHighlight onPress={() => this.props.navigation.navigate('Moments')} underlayColor={'#DDD'}>
           <View style={styles.momentsBox}>
             <Svg icon={'moments'} size={22}/>
