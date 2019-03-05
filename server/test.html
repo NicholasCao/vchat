@@ -1,0 +1,26 @@
+<!doctype html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test</title>
+</head>
+<body>
+  <input type="text" onblur="wsServer.onopen(this.value)">
+  <script>
+    var wsServer = new WebSocket('ws://127.0.0.1:3000');
+    wsServer.onopen = function (e) {
+      (typeof e == 'string') && wsServer.send(e);//向后台发送数据
+    };
+    wsServer.onclose = function (e) {//当链接关闭的时候触发
+
+    };
+    wsServer.onmessage = function (e) {//后台返回消息的时候触发
+      console.log('接收: ' + e.data);
+    };
+    wsServer.onerror = function (e) {//错误情况触发
+
+    }
+  </script>
+</body>
+</html>

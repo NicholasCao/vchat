@@ -1,15 +1,35 @@
-import * as Koa from 'koa';
-import * as Router from 'koa-router';
+import * as Koa from 'koa'
+import * as Router from 'koa-router'
+import * as http from 'http'
+import * as WebSocket from 'ws'
 
-const app = new Koa();
-const router = new Router();
+const app = new Koa()
+const router = new Router()
 
-router.get('/*', async (ctx) => {
-    ctx.body = 'Hello World...';
+app.use(async ctx => {
+ctx.body = 'Hello World'
 })
+const server = http.createServer(app.callback())
+const wss = new WebSocket.Server({server})
 
-app.use(router.routes());
+wss.on('connection', (ws) => {
+	console.log(`[SERVER] connection()`)
+	ws.on('open', function open() {
+		ws.send('something')
+	})
+	ws.on('message', function (message) {
+		console.log(`[SERVER] Received: ${message}`)
+		ws.send(`Server: ${message}`, (err) => {
+			if (err) {
+				console.log(`[SERVER] error: ${err}`)
+			}
+		})
+	})
+})
+server.listen(3000)
 
-app.listen(3000);
+// router.get('/*', async (ctx) => {
+//     ctx.body = 'Hello World...'
+// })
 
-console.log('Server running on port 3000');
+// app.use(router.routes())
