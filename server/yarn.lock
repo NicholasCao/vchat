@@ -34,6 +34,11 @@
     "@types/keygrip" "*"
     "@types/node" "*"
 
+"@types/events@*":
+  version "3.0.0"
+  resolved "http://registry.npm.taobao.org/@types/events/download/@types/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
+  integrity sha1-KGLz9Yqaf3w+eNefEw3U1xwlwqc=
+
 "@types/express-serve-static-core@*":
   version "4.16.1"
   resolved "http://registry.npm.taobao.org/@types/express-serve-static-core/download/@types/express-serve-static-core-4.16.1.tgz#35df7b302299a4ab138a643617bd44078e74d44e"
@@ -109,6 +114,14 @@
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
+
+"@types/ws@^6.0.1":
+  version "6.0.1"
+  resolved "http://registry.npm.taobao.org/@types/ws/download/@types/ws-6.0.1.tgz#ca7a3f3756aa12f62a0a62145ed14c6db25d5a28"
+  integrity sha1-yno/N1aqEvYqCmIUXtFMbbJdWig=
+  dependencies:
+    "@types/events" "*"
+    "@types/node" "*"
 
 abbrev@1:
   version "1.1.1"
@@ -207,6 +220,11 @@ async-each@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/async-each/download/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
   integrity sha1-GdOGodntxufByF04iu28xW0zYC0=
+
+async-limiter@~1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/async-limiter/download/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
+  integrity sha1-ePrtjD0HSrgfIrTphdeehzj3IPg=
 
 atob@^2.1.1:
   version "2.1.2"
@@ -2100,6 +2118,13 @@ write-file-atomic@^2.0.0:
     graceful-fs "^4.1.11"
     imurmurhash "^0.1.4"
     signal-exit "^3.0.2"
+
+ws@^6.1.4:
+  version "6.1.4"
+  resolved "http://registry.npm.taobao.org/ws/download/ws-6.1.4.tgz#5b5c8800afab925e94ccb29d153c8d02c1776ef9"
+  integrity sha1-W1yIAK+rkl6UzLKdFTyNAsF3bvk=
+  dependencies:
+    async-limiter "~1.0.0"
 
 xdg-basedir@^3.0.0:
   version "3.0.0"
