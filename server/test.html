@@ -6,21 +6,31 @@
   <title>test</title>
 </head>
 <body>
-  <input type="text" onblur="wsServer.onopen(this.value)">
+  <input type="text" id="from">
+  <input type="text" id="to">
+  <input type="text" onblur="send(this.value)">
   <script>
     var wsServer = new WebSocket('ws://127.0.0.1:3000');
     wsServer.onopen = function (e) {
-      (typeof e == 'string') && wsServer.send(e);//向后台发送数据
     };
     wsServer.onclose = function (e) {//当链接关闭的时候触发
-
     };
     wsServer.onmessage = function (e) {//后台返回消息的时候触发
-      console.log('接收: ' + e.data);
+      let data = JSON.parse(e.data)
+      console.log(data.from + ':' + data.content);
     };
     wsServer.onerror = function (e) {//错误情况触发
-
     }
+    send = function (msg) {
+      let data = JSON.stringify({
+        type: 'text',
+        content: msg,
+        from: document.getElementById('from').value,
+        to: document.getElementById('to').value
+      })
+      console.log(data)
+      wsServer.send(data);//向后台发送数据
+    };
   </script>
 </body>
 </html>
