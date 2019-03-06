@@ -10,14 +10,15 @@
   <input type="text" id="to">
   <input type="text" onblur="send(this.value)">
   <script>
-    var wsServer = new WebSocket('ws://127.0.0.1:3000');
+    var wsServer = new WebSocket('ws://127.0.0.1:3000/msg');
     wsServer.onopen = function (e) {
     };
     wsServer.onclose = function (e) {//当链接关闭的时候触发
     };
     wsServer.onmessage = function (e) {//后台返回消息的时候触发
-      let data = JSON.parse(e.data)
-      console.log(data.from + ':' + data.content);
+      // let data = JSON.parse(e.data)
+      // console.log(data.from + ':' + data.content);
+      console.log(e)
     };
     wsServer.onerror = function (e) {//错误情况触发
     }
