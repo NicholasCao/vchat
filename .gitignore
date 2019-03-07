@@ -60,5 +60,4 @@ buck-out/
 .jest/
 
 # server
-*/dist
-config.ts
+*/dist/
