@@ -61,4 +61,4 @@ buck-out/
 
 # server
 */dist
-*/config.ts
+config.ts
