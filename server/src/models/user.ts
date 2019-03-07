@@ -4,11 +4,10 @@ const schema = new mongoose.Schema({
   username: String,
   password: String,
   name: String,
-  contacts: Array,
+  contacts: Map,
 })
 
 schema.set('toJSON', { versionKey: false })
 schema.set('toObject', { versionKey: false })
-
 
 export default mongoose.model("user", schema)

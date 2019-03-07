@@ -1,5 +1,7 @@
 import * as Router from 'koa-router'
 
+import user from '../controllers/user'
+
 const router = new Router()
 
 const test = function (ctx:any) {
@@ -11,6 +13,7 @@ const test = function (ctx:any) {
 
 router.get('/', (async (ctx) => { ctx.body = 'Hello World...' }))
   .get('/test', test)
-  .post('/user/signUp', () => {console.log('signUp')})
+  .post('/user/signUp', user.signUp)
+  .post('/user/login', user.login)
 
 export default router

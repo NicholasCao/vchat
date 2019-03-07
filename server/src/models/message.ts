@@ -10,5 +10,4 @@ const schema = new mongoose.Schema({
 schema.set('toJSON', { versionKey: false })
 schema.set('toObject', { versionKey: false })
 
-
 export default mongoose.model("message", schema)
