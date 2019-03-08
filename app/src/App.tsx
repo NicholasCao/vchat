@@ -24,12 +24,12 @@ const TabNavigator = createBottomTabNavigator({
   backBehavior: 'none',
   tabBarOptions: {
     showLabel: false
-  },
+  }
 });
 
 const App = createStackNavigator({
-  Home: {screen: TabNavigator},
   Login: {screen: Login},
+  Home: {screen: TabNavigator},
   Chating: {screen: Chating},
   Profile: {screen: Profile},
   Moments: {screen: Moments}
