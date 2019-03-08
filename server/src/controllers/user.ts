@@ -7,16 +7,16 @@ import config from '../config'
 // 登录
 const login = async (ctx:any) => {
   const { username, password } = ctx.request.body
-  if(new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username)&&new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)){
+  if(new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username) && new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)){
     let user:any = await User.findOne({ username })
     if(user != null) {
       if(password == user.password) {
         const token = jwt.sign({
-          id: user._id,
+          _id: user._id,
         }, config.secret)
         ctx.body = {
           success: true,
-          id: user._id,
+          _id: user._id,
           token
         }
       } else {
@@ -44,29 +44,42 @@ const login = async (ctx:any) => {
 
 // 注册
 const signUp = async (ctx:any) => {
+  console.log(ctx.request.body)
   const { username, password, name } = ctx.request.body
-
-  let user:any = await User.findOne({ username }).catch(err => {
-    console.log(err)
-  })
-  if(user != null) {
-    // 6-10位英文字母or数字
-    if(!new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username)){
+  // 检测名字
+  if(!new RegExp(/^[\S|\d]{0,10}$/).test(name)){
+    ctx.body = {
+      success: false,
+      info: '名字不合法'
+    }
+  }
+  // 检测用户名和密码
+  else if(!new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username)){
+    ctx.body = {
+      success: false,
+      info: '用户名应为6-10位英文字符或数字'
+    }
+  } else if(!new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)){
+    ctx.body = {
+      success: false,
+      info: '密码应为6-12位英文字符或数字'
+    }
+  } else {
+    let user:any = await User.findOne({ username }).catch(err => {
+      console.log(err)
+    })
+    if(user != null) {
       ctx.body = {
         success: false,
-        info: '用户名应为6-10位英文字符或数字'
-      }
-    } else if(!new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)){
-      ctx.body = {
-        success: false,
-        info: '密码应为6-12位英文字符或数字'
+        info: 'username already exists'
       }
     } else {
+      var a = {b:1}
       user = new User({
         username,
         password,
         name,
-        contacts: new Map()
+        contacts: new Map([['a',a]])
       })
       let result = await user.save().catch((err:any) => {
         console.log(err)
@@ -75,11 +88,6 @@ const signUp = async (ctx:any) => {
         success: true,
         user: result
       }
-    }
-  } else {
-    ctx.body = {
-      success: false,
-      info: 'username already exists'
     }
   }
 }
@@ -103,15 +111,15 @@ const addFriend = async (ctx:any) => {
 
 // 搜索用户
 const search = async (ctx:any) => {
-  const {username} = ctx.request.body
-  let user:any = await User.findOne({ username }).catch(err => {
+  const username  = ctx.params.username
+  let user:any = await User.findOne({ username }, ['name', 'username', '_id'])
+  .catch(err => {
     console.log(err)
   })
   if(user != null) {
     ctx.body = {
       success: true,
-      user: user,
-      id: user._id
+      user: user
     }
   } else {
     ctx.body = {

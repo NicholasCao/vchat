@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
   username: String,
   password: String,
   name: String,
-  contacts: Object,
+  contacts: Map,
 })
 
 schema.set('toJSON', { versionKey: false })
