@@ -1,9 +1,8 @@
 import * as WebSocket from 'ws'
 
 const msgWs = new WebSocket.Server({ noServer: true })
-// var userList:any[] = []
 
-msgWs.on('connection', (ws,req) => {
+msgWs.on('connection', (ws) => {
 	console.log(`[SERVER] connection()`)
 
 	ws.on('message', (msg:string) => {
