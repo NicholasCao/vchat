@@ -1,6 +1,9 @@
 import * as React from "react"
 import { TextInput, TouchableOpacity, StyleSheet, Text, View, KeyboardAvoidingView } from "react-native"
-import { NavigationActions } from 'react-navigation';
+// import { NavigationActions } from 'react-navigation';
+
+import config from '../config'
+
 // type Props = {};
 interface Props {
   navigation?: any
@@ -22,6 +25,7 @@ export default class Login extends React.Component<Props,any> {
         <KeyboardAvoidingView behavior="padding">
           <TextInput
             style={styles.username}
+            value={this.state.username}
             onChangeText={username => this.setState({username})}
             placeholder={'Username'}
             autoCapitalize={'none'}
@@ -32,6 +36,7 @@ export default class Login extends React.Component<Props,any> {
         <KeyboardAvoidingView behavior="padding">
           <TextInput
             style={styles.password}
+            value={this.state.password}
             onChangeText={password => this.setState({password})}
             placeholder={'Password'}
             autoCapitalize={'none'}
@@ -54,8 +59,27 @@ export default class Login extends React.Component<Props,any> {
     );
   }
   login():void {
-    console.log(1)
-    this.props.navigation.navigate('Home')
+    let { username, password } = this.state
+    let headers =  {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+    fetch(config.root + '/user/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password
+      }),
+      headers
+    }).then(res => res.json())
+    .then(json => {
+      if(json.success){
+        this.props.navigation.navigate('Home')
+      }
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
   }
   signUp():void {
     console.log(1)
