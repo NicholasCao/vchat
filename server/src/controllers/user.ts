@@ -8,7 +8,8 @@ interface LittleV {
   init: any,
   addFriend: any
 }
-// 注册小V
+
+// 小V
 const littleV:LittleV = {
   user: null,
   init: async function () {
@@ -40,9 +41,18 @@ const littleV:LittleV = {
   }
 }
 
+// 注册小V
 littleV.init()
 
-// 登录
+/*
+/ 登录
+/ @param username
+/ @param password
+/ @return user 
+/ @return token
+/ @return success
+/ @return contacts
+*/
 const login = async (ctx:any) => {
   const { username, password } = ctx.request.body
   if(new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username) && new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)){
@@ -85,7 +95,14 @@ const login = async (ctx:any) => {
   }
 }
 
-// 注册
+/*
+/ 注册
+/ @param username
+/ @param password
+/ @param name
+/ @return user
+/ @return success
+*/
 const signUp = async (ctx:any) => {
   const { username, password, name } = ctx.request.body
   // 检测名字
@@ -140,7 +157,7 @@ const signUp = async (ctx:any) => {
 / 添加好友(已同意)
 / @param _id 同意的人ID
 / @param friendUsername 申请人的用户名
-/ @return  
+/ @return  friend
 */
 const addFriend = async (ctx:any) => {
   const  { _id, friendUsername } = ctx.request.body
