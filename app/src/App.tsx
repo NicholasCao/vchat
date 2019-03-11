@@ -30,6 +30,7 @@ const TabNavigator = createBottomTabNavigator({
 const App = createStackNavigator({
   Login: {screen: Login},
   Home: {screen: TabNavigator},
+  // Login: {screen: Login},
   Chating: {screen: Chating},
   Profile: {screen: Profile},
   Moments: {screen: Moments}

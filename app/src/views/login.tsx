@@ -3,6 +3,7 @@ import { TextInput, TouchableOpacity, StyleSheet, Text, View, KeyboardAvoidingVi
 // import { NavigationActions } from 'react-navigation';
 
 import config from '../config'
+import storage from '../utils/storage'
 
 // type Props = {};
 interface Props {
@@ -73,8 +74,13 @@ export default class Login extends React.Component<Props,any> {
       headers
     }).then(res => res.json())
     .then(json => {
+      console.log(json)
       if(json.success){
         this.props.navigation.navigate('Home')
+        storage.set('token', json.token)
+        storage.set('username', json.user.username)
+        storage.set('password', json.user.password)
+        storage.set('id', json.user._id)
       }
     })
     .catch((error)=>{
