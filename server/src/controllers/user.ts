@@ -16,7 +16,7 @@ const login = async (ctx:any) => {
         }, config.secret)
         ctx.body = {
           success: true,
-          _id: user._id,
+          user,
           token
         }
       } else {
