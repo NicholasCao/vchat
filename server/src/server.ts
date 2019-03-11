@@ -8,7 +8,7 @@ import * as url from 'url'
 import * as mongoose from 'mongoose'
 
 import config from './config'
-import router from './routes'
+import api from './routes'
 import msgWs from './ws/msgWs'
 import userWs from './ws/userWs'
 
@@ -16,7 +16,8 @@ mongoose.connect(config.db, { useNewUrlParser: true })
 mongoose.connection.on("error", console.error)
 mongoose.connection.on("open", () => console.log("MongoDB connection successed"))
 
-const app = new Koa()
+const app = new Koa(),
+  router = api.prefix('/vchat')
 
 app.use(bodyParser())
 app.use(json())
