@@ -1,8 +1,9 @@
 import * as path from 'path'
 
 export default {
-  db: 'mongodb://localhost:27017/vchattest',
+  db: 'mongodb://localhost:27017/vchattest2',
   port: '3002',
   // root: '',
-  secret: 'test'
+  secret: 'test',
+  littleVPassword: 'test'
 }
