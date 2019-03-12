@@ -31,7 +31,6 @@ const littleV:LittleV = {
       })
     }
     this.user = user
-    console.log(user)
   },
   addFriend: async function (user:any) {
     this.user.contacts.push(user.username)
@@ -56,7 +55,7 @@ littleV.init()
 const login = async (ctx:any) => {
   const { username, password } = ctx.request.body
   if(new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username) && new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)){
-    let user:any = await User.findOne({ username }, ['name', 'username', '_id'])
+    let user:any = await User.findOne({ username })
     .catch(err => {
       console.log(err)
     })
@@ -65,7 +64,7 @@ const login = async (ctx:any) => {
         const token = jwt.sign({
           _id: user._id,
         }, config.secret)
-        let contacts = await User.find({'username': {'$in': user.contacts}})
+        let contacts = await User.find({'username': {'$in': user.contacts}}, ['username', 'name', '_id'])
         ctx.body = {
           success: true,
           user,
