@@ -12,13 +12,13 @@ export default class Me extends React.Component<Props,any> {
       let iconName = 'me' + (option.focused ? '' : '2')
       return (
         <Svg icon={iconName} size={23}/>
-      );
+      )
     },
-  };
+  }
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render():React.ReactNode {
     return (
@@ -27,7 +27,7 @@ export default class Me extends React.Component<Props,any> {
           Me
         </Text>
       </View>
-    );
+    )
   }
 }
 

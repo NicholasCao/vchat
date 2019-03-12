@@ -17,6 +17,7 @@ export default class Login extends React.Component<Props,any> {
       password: ''
     };
   }
+
   render():React.ReactNode {
     return (
       <View style={styles.container}>
@@ -81,6 +82,7 @@ export default class Login extends React.Component<Props,any> {
         storage.set('username', json.user.username)
         storage.set('password', json.user.password)
         storage.set('id', json.user._id)
+        storage.set('contacts', json.contacts)
       }
     })
     .catch((error)=>{

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Image, TouchableOpacity, StyleSheet, Text, View } from "react-native"
-import { withNavigation } from 'react-navigation';
+import { withNavigation } from 'react-navigation'
 interface Props {
   message: string,
   isMine: boolean,
@@ -8,9 +8,9 @@ interface Props {
 }
 class Message extends React.Component<any,any> {
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render():React.ReactNode {
     return (
@@ -23,7 +23,7 @@ class Message extends React.Component<any,any> {
           <Text style={styles.text}>{this.props.message}</Text>
         </View>
       </View>
-    );
+    )
   }
 }
 

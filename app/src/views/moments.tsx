@@ -3,16 +3,16 @@ import { Dimensions, Image, TextInput, TouchableOpacity, StyleSheet, Text, View 
 
 import MomentsItem from '../compoents/momentsItem'
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 interface Props {
   navigation?: any
 }
 export default class Moments extends React.Component<Props,any> {
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render():React.ReactNode {
     return (
@@ -27,7 +27,7 @@ export default class Moments extends React.Component<Props,any> {
           <MomentsItem/>
         </View>
       </View>
-    );
+    )
   }
 }
 

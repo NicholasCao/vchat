@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Image, TextInput, TouchableHighlight, StyleSheet, Text, View } from "react-native"
-import { withNavigation } from 'react-navigation';
+import { withNavigation } from 'react-navigation'
 
 interface Props {
   title: string,
@@ -12,9 +12,9 @@ interface Props {
 }
 class ChatBox extends React.Component<any,any> {
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render():React.ReactNode {
     return (
@@ -38,7 +38,7 @@ class ChatBox extends React.Component<any,any> {
           </View>
         </View>
       </TouchableHighlight>
-    );
+    )
   }
   chat():void {
     this.props.navigation.navigate('Chating')

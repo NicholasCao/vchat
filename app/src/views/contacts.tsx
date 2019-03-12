@@ -1,30 +1,68 @@
 import * as React from "react"
-import { Image, TouchableHighlight, StyleSheet, Text, View } from "react-native"
+import { Image, TouchableHighlight, StyleSheet, Text, View, FlatList } from "react-native"
 
 import Svg from '../compoents/svg'
 import Head from '../compoents/head'
+import storage from '../utils/storage'
+
 interface Props {
   navigation?: any
 }
-export default class Contacts extends React.Component<Props,any> {
+interface State {
+  contacts: Object[],
+  refreshing: boolean
+}
+
+export default class Contacts extends React.Component<Props,State> {
   static navigationOptions = {
     tabBarIcon: (option: any) => {
       let iconName = 'contacts' + (option.focused ? '' : '2')
       return (
         <Svg icon={iconName} size={35}/>
-      );
+      )
     },
-  };
-  constructor(props:any) {
-    super(props);
-    this.state = {
-    };
   }
+  constructor(props:any) {
+    super(props)
+    this.state = {
+      contacts: [{}],
+      refreshing: false
+    }
+  }
+
+  componentDidMount() {
+    storage.get('contacts', (err:any, data: Object[]) =>{
+      this.setState({contacts: data})
+    })
+  }
+
+  loadContacts() {
+    if(!this.state.refreshing){
+      this.setState({contacts: [{name:'a'}, {name: 'b'},{name: 'c'}]})
+    }
+  }
+  
+  renderItem(data:any) {
+    return (
+      <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
+        <View style={styles.container}>
+          <Image
+            style={styles.avater}
+            source={require('../../static/avatar.jpg')}
+          />
+          <Text style={styles.name}>
+            {data.item.name}
+          </Text>
+        </View>
+      </TouchableHighlight>
+    )
+  }
+
   render():React.ReactNode {
     return (
       <View>
         <Head title='Contacts'/>
-        <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
+        {/* <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
           <View style={styles.container}>
             <View>
               <Image
@@ -36,9 +74,17 @@ export default class Contacts extends React.Component<Props,any> {
               Nicholas
             </Text>
           </View>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
+        <FlatList
+          refreshing={this.state.refreshing}
+          onRefresh={() => this.loadContacts()}
+          data={this.state.contacts}
+          renderItem={this.renderItem}
+          extraData={this.state}
+          keyExtractor={(item:any, index:any) => index.toString()}
+        />
       </View>
-    );
+    )
   }
 }
 

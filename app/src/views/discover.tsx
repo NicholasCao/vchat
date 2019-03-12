@@ -12,13 +12,13 @@ export default class Discover extends React.Component<Props,any> {
       let iconName = 'discover' + (option.focused ? '' : '2')
       return (
         <Svg icon={iconName} size={25}/>
-      );
+      )
     },
-  };
+  }
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render():React.ReactNode {
     return (
@@ -33,7 +33,7 @@ export default class Discover extends React.Component<Props,any> {
           </View>
         </TouchableHighlight>
       </View>
-    );
+    )
   }
 }
 

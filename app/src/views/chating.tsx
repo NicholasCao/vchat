@@ -17,11 +17,11 @@ interface State {
 }
 export default class Me extends React.Component<Props,State> {
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
       messageList: [{message:'hello',isMine:false},{message:'helloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',isMine:false}],
       message: ''
-    };
+    }
   }
   send():void {
     this.setState((previousState:any) => { 
@@ -99,7 +99,7 @@ export default class Me extends React.Component<Props,State> {
           {this.renderAddOrSend()}
         </View>
       </View>
-    );
+    )
   }
 }
 

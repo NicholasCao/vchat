@@ -79,8 +79,8 @@ export default class MomentsItem extends React.Component<any,any> {
   }
   onPressMore():void {
     this.setState((previousState:any) => {
-      return { show: !previousState.show };
-    });
+      return { show: !previousState.show }
+    })
   }
 
   render():React.ReactNode {

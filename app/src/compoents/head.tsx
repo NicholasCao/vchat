@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Image, TouchableHighlight, StyleSheet, Text, View } from "react-native"
-// import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation'
 
 import Svg from './svg'
 
@@ -9,9 +9,9 @@ interface Props {
 }
 export default class ChatBox extends React.Component<Props,any> {
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render():React.ReactNode {
     return (
@@ -26,7 +26,7 @@ export default class ChatBox extends React.Component<Props,any> {
           </TouchableHighlight>
         </View>
       </View>
-    );
+    )
   }
 }
 

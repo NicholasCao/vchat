@@ -4,24 +4,16 @@ export default {
   /**
   * 获取
   */
-  get(key:string,cb:Function) {
-    AsyncStorage.getItem(key, (error, value) => {
-      cb(error, value);
-    })
-  },
-  getObject(key:string, cb:Function) {
-    return AsyncStorage.getItem(key, (error, object:any) => {
-      cb(error, JSON.parse(object));
+  get(key:string, cb:Function) {
+    return AsyncStorage.getItem(key, (err, object:any) => {
+      cb(err, JSON.parse(object));
     })
   },
 
   /**
   * 保存
   */
-  set(key:string, value:string) {
-    return AsyncStorage.setItem(key, value);
-  },
-  setObject(key:string, obj:object) {
+  set(key:string, obj:object) {
     return AsyncStorage.setItem(key, JSON.stringify(obj));
   },
 

@@ -8,9 +8,9 @@ interface Props {
 }
 export default class Profile extends React.Component<Props,any> {
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render():React.ReactNode {
     return (
@@ -20,7 +20,7 @@ export default class Profile extends React.Component<Props,any> {
           profile
         </Text>
       </View>
-    );
+    )
   }
 }
 

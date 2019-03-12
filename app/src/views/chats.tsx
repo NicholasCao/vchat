@@ -16,13 +16,13 @@ export default class Chats extends React.Component<Props,any> {
       let iconName = 'chats' + (option.focused ? '' : '2')
       return (
         <Svg icon={iconName} size={28}/>
-      );
+      )
     },
-  };
+  }
   constructor(props:any) {
-    super(props);
+    super(props)
     this.state = {
-    };
+    }
   }
   render():React.ReactNode {
     return (
@@ -40,7 +40,7 @@ export default class Chats extends React.Component<Props,any> {
           lastTime={'22:04PM'}
         />
       </View>
-    );
+    )
   }
 }
 
