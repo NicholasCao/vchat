@@ -4,6 +4,7 @@ import { withNavigation } from 'react-navigation'
 
 interface Props {
   title: string,
+  username: string,
   avatar?: string,
   lastMessage: string,
   lastTime: string,
@@ -41,7 +42,10 @@ class ChatBox extends React.Component<any,any> {
     )
   }
   chat():void {
-    this.props.navigation.navigate('Chating')
+    this.props.navigation.navigate('Chating', {
+      username: this.props.username,
+      name: this.props.title
+    })
   }
 }
 
@@ -85,5 +89,6 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 })
+
 //声明高阶组件
 export default withNavigation<Props>(ChatBox)

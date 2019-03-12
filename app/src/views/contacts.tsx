@@ -9,8 +9,7 @@ interface Props {
   navigation?: any
 }
 interface State {
-  contacts: Object[],
-  refreshing: boolean
+  contacts: Object[]
 }
 
 export default class Contacts extends React.Component<Props,State> {
@@ -25,8 +24,8 @@ export default class Contacts extends React.Component<Props,State> {
   constructor(props:any) {
     super(props)
     this.state = {
-      contacts: [{}],
-      refreshing: false
+      contacts: [],
+      // refreshing: false
     }
   }
 
@@ -36,11 +35,11 @@ export default class Contacts extends React.Component<Props,State> {
     })
   }
 
-  loadContacts() {
-    if(!this.state.refreshing){
-      this.setState({contacts: [{name:'a'}, {name: 'b'},{name: 'c'}]})
-    }
-  }
+  // loadContacts() {
+  //   if(!this.state.refreshing){
+  //     this.setState({contacts: [{name:'a'}, {name: 'b'},{name: 'c'}]})
+  //   }
+  // }
   
   renderItem(data:any) {
     return (
@@ -76,8 +75,8 @@ export default class Contacts extends React.Component<Props,State> {
           </View>
         </TouchableHighlight> */}
         <FlatList
-          refreshing={this.state.refreshing}
-          onRefresh={() => this.loadContacts()}
+          // refreshing={this.state.refreshing}
+          // onRefresh={() => this.loadContacts()}
           data={this.state.contacts}
           renderItem={this.renderItem}
           extraData={this.state}

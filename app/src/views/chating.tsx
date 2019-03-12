@@ -13,14 +13,19 @@ interface Props {
 }
 interface State {
   messageList: Array<MessageItem>,
-  message: string
+  message: string,
+  username: string,
+  name: string
 }
 export default class Me extends React.Component<Props,State> {
   constructor(props:any) {
     super(props)
+    this.props.navigation.state.params
     this.state = {
       messageList: [{message:'hello',isMine:false},{message:'helloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',isMine:false}],
-      message: ''
+      message: '',
+      username: this.props.navigation.state.params.username,
+      name: this.props.navigation.state.params.name
     }
   }
   send():void {
@@ -66,7 +71,7 @@ export default class Me extends React.Component<Props,State> {
             </View>
           </TouchableHighlight>
           <View>
-            <Text style={styles.alias}>Nicholas</Text>
+            <Text style={styles.alias}>{this.state.name}</Text>
           </View>
           <TouchableHighlight onPress={() => this.props.navigation.navigate('Profile')} underlayColor={'#E8E8E8'} style={styles.more}>
             <Svg icon={'more'} size={28}/>
