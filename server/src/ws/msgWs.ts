@@ -7,7 +7,9 @@ msgWs.on('connection', (ws) => {
 
 	ws.on('message', (msg:string) => {
 		const data = JSON.parse(msg)
-		//console.log(data)
+
+		// 消息格式不对
+		// if(!(data.from && data.to && data.type && data.content)) return
 
 		// 加入userList
 		if(global.userList.indexOf(data.from) === -1){
