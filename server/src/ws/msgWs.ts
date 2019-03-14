@@ -8,13 +8,17 @@ msgWs.on('connection', (ws) => {
 	ws.on('message', (msg:string) => {
 		const data = JSON.parse(msg)
 
-		// 消息格式不对
-		// if(!(data.from && data.to && data.type && data.content)) return
-
 		// 加入userList
 		if(global.userList.indexOf(data.from) === -1){
 			global.userList.push(data.from)
 		}
+
+		// 心跳
+		if(data == 'ping'){
+			ws.send('pong')
+			return
+		}
+
 		let fromIndex = global.userList.indexOf(data.from)
 	  //console.log(global.userList)
 		let index = global.userList.indexOf(data.to)
