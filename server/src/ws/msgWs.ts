@@ -8,6 +8,8 @@ msgWs.on('connection', (ws) => {
 	ws.on('message', (msg:string) => {
 		const data = JSON.parse(msg)
 
+		console.log(data)
+
 		// 加入userList
 		if(global.userList.indexOf(data.from) === -1){
 			global.userList.push(data.from)
