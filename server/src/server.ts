@@ -28,11 +28,11 @@ const server = http.createServer(app.callback())
 declare global {
 	namespace NodeJS {
 		interface Global {
-			userList: any[]
+			users: Map<string,any>
 		}
 	}
 }
-global.userList = []
+global.users = new Map()
 
 // ws router
 server.on('upgrade', (request, socket, head) => {
