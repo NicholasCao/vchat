@@ -7,6 +7,10 @@ msgWs.on('connection', (ws) => {
 	console.log(`[SERVER] connection()`)
 
 	ws.on('message', (msg:string) => {
+		if(msg == 'ping'){ // 心跳
+			ws.send('pong')
+			return
+		}
 		const data = JSON.parse(msg)
 		console.log(data)
 
@@ -15,8 +19,6 @@ msgWs.on('connection', (ws) => {
 			username = data.username
 			console.log(`${username}连接`)
 			global.users.set(data.username, ws)
-		} else if(data == 'ping'){ // 心跳
-			ws.send('pong')
 		} else {
 			if(global.users.get(data.to)){ // 对方在线
 				global.users.get(data.to).send(JSON.stringify(data), (err:any) => {
@@ -26,12 +28,18 @@ msgWs.on('connection', (ws) => {
 				console.log('对方不在线')
 			}
 		}
-
+	})
+	// 断开连接时删除对应的user
+	ws.on('close',() => {
 		// 断开连接时删除对应的user
-		ws.on('close',() => {
-			global.users.delete(username)
-			console.log(`${username}断开连接`)
+		let username
+		global.users.forEach(function(value, key, map) {
+			if(value == ws){
+				username = key
+			}
 		})
+		global.users.delete(username)
+		console.log(`${username}断开连接`)
 	})
 })
 
