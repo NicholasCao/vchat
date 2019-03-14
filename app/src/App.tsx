@@ -38,7 +38,9 @@ const App = createStackNavigator({
   headerMode: 'none', // 此参数设置不渲染顶部的导航条
 })
 
-export default {
-  app: createAppContainer(App),
-  ws: new WebSocket('ws://' + config.root + '/msg')
-}
+// export default {
+//   app: createAppContainer(App),
+//   ws: new WebSocket('ws://' + config.root + '/msg')
+// }
+export const app = createAppContainer(App)
+export const ws = new WebSocket('ws://' + config.root + '/msg')
