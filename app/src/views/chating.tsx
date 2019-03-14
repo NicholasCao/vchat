@@ -3,6 +3,9 @@ import { FlatList, TextInput, TouchableHighlight, StyleSheet, Text, View, Toucha
 
 import Svg from '../compoents/svg'
 import Message from '../compoents/message'
+import im from '../utils/im'
+import storage from '../utils/storage'
+import conversation from '../utils/conversation'
 
 interface MessageItem {
   message: string,
@@ -12,31 +15,53 @@ interface Props {
   navigation: any
 }
 interface State {
+  myUsername: string,
   messageList: Array<MessageItem>,
   message: string,
   username: string,
   name: string
 }
+
 export default class Me extends React.Component<Props,State> {
   constructor(props:any) {
     super(props)
     this.props.navigation.state.params
     this.state = {
-      messageList: [{message:'hello',isMine:false},{message:'helloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',isMine:false}],
+      myUsername: '',
+      messageList: conversation.conversations[this.props.navigation.state.params.username],
       message: '',
       username: this.props.navigation.state.params.username,
       name: this.props.navigation.state.params.name
     }
   }
+
+  componentDidMount():void {
+    storage.get('username', (err:any, value:string) => {
+      this.setState({myUsername: value})
+    })
+  }
+
   send():void {
-    this.setState((previousState:any) => { 
-      var messageList = previousState.messageList
-      var newMessageItem:MessageItem = {
-        message: this.state.message,
-        isMine: true
-      }
-      messageList.push(newMessageItem)
-      return { messageList }
+    // this.setState((previousState:any) => { 
+    //   var messageList = previousState.messageList
+    //   var newMessageItem:MessageItem = {
+    //     message: this.state.message,
+    //     isMine: true
+    //   }
+    //   messageList.push(newMessageItem)
+    //   return { messageList }
+    // })
+    console.log({
+      type: 'text',
+      content: this.state.message,
+      from: this.state.myUsername,
+      to: this.state.username
+    })
+    im.sendMsg({
+      type: 'text',
+      content: this.state.message,
+      from: this.state.myUsername,
+      to: this.state.username
     })
     this.setState({message: ''})
   }

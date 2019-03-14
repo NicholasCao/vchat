@@ -4,6 +4,7 @@ import { TextInput, TouchableOpacity, StyleSheet, Text, View, KeyboardAvoidingVi
 
 import config from '../config'
 import storage from '../utils/storage'
+import im from '../utils/im'
 
 // type Props = {};
 interface Props {
@@ -66,7 +67,7 @@ export default class Login extends React.Component<Props,any> {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     }
-    fetch(config.root + '/user/login', {
+    fetch('https://' + config.root + '/user/login', {
       method: 'POST',
       body: JSON.stringify({
         username,
@@ -83,6 +84,7 @@ export default class Login extends React.Component<Props,any> {
         storage.set('password', json.user.password)
         storage.set('id', json.user._id)
         storage.set('contacts', json.contacts)
+        im.createWs()
       }
     })
     .catch((error)=>{

@@ -31,9 +31,9 @@ export default class Chats extends React.Component<Props,State> {
     }
   }
 
-  connect() {
+  // connect() {
     /* do sth */
-  }
+  // }
 
   renderItem(data:any) {
     let item = data.item
@@ -53,8 +53,8 @@ export default class Chats extends React.Component<Props,State> {
         <StatusBar/>
         <Head title='Vchat'/>
         <FlatList
-          refreshing={this.state.refreshing}
-          onRefresh={() => this.connect()}
+          // refreshing={this.state.refreshing}
+          // onRefresh={() => this.connect()}
           data={this.state.chats}
           renderItem={this.renderItem}
           extraData={this.state}
