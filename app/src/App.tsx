@@ -11,7 +11,7 @@ import Me from './views/me'
 import Chating from './views/chating'
 import Profile from './views/profile'
 import Moments from './views/moments'
-
+import config from './config'
 type Props = {};
 
 const TabNavigator = createBottomTabNavigator({
@@ -38,4 +38,7 @@ const App = createStackNavigator({
   headerMode: 'none', // 此参数设置不渲染顶部的导航条
 })
 
-export default createAppContainer(App);
+export default {
+  app: createAppContainer(App),
+  ws: new WebSocket('ws://' + config.root + '/msg')
+}
