@@ -42,5 +42,4 @@ const App = createStackNavigator({
 //   app: createAppContainer(App),
 //   ws: new WebSocket('ws://' + config.root + '/msg')
 // }
-export const app = createAppContainer(App)
-export const ws = new WebSocket('ws://' + config.root + '/msg')
+export default createAppContainer(App)
