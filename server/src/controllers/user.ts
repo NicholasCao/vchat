@@ -61,6 +61,10 @@ const login = async (ctx:any) => {
     })
     if(user != null) {
       if(password == user.password) {
+        // 加入在线用户列表
+        if(global.userList.indexOf(username) === -1){
+          global.userList.push(username)
+        }
         const token = jwt.sign({
           _id: user._id,
         }, config.secret)

@@ -37,11 +37,11 @@ global.userList = []
 // ws router
 server.on('upgrade', (request, socket, head) => {
   const pathname = url.parse(request.url).pathname
-  if (pathname === '/msg') {
+  if (pathname === '/vchat/msg') {
     msgWs.handleUpgrade(request, socket, head, (ws) => {
       msgWs.emit('connection', ws)
     })
-  } else if (pathname === '/user') {
+  } else if (pathname === '/vchat/user') {
     userWs.handleUpgrade(request, socket, head, (ws) => {
       userWs.emit('connection', ws)
     })
