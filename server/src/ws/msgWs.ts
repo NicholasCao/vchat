@@ -13,6 +13,7 @@ msgWs.on('connection', (ws) => {
 		let username:any
 		if(data.username){// 加入在线列表
 			username = data.username
+			console.log(`${username}连接`)
 			global.users.set(data.username, ws)
 		} else if(data == 'ping'){ // 心跳
 			ws.send('pong')
@@ -29,6 +30,7 @@ msgWs.on('connection', (ws) => {
 		// 断开连接时删除对应的user
 		ws.on('close',() => {
 			global.users.delete(username)
+			console.log(`${username}断开连接`)
 		})
 	})
 })
