@@ -1,6 +1,7 @@
 import config from '../config'
 import storage from './storage'
 import conversation from './conversation'
+import chatBox from '../compoents/chatBox';
 
 const wsUrl = `wss://${config.root}/msg`
 
@@ -16,7 +17,7 @@ const heartCheck:any = {
   start: function(){
     this.timeoutObj = setTimeout(() => {
       /*
-      / 这里发送一个心跳，后端收到后，返回一个心跳消息，
+      / 发送一个心跳，后端收到后，返回一个心跳消息，
       / onmessage拿到返回的心跳就说明连接正常
       */
       im.ws.send('ping')
@@ -39,7 +40,7 @@ interface Im{
   createWs: () => void,
   initEventHandle: () => void,
   reconnect: () => void
-  sendMsg: (data:msgDetail) => void
+  sendMsg: (data:msgDetail) => void,
 }
 
 const im:Im = {

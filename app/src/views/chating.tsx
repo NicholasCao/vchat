@@ -39,6 +39,12 @@ export default class Me extends React.Component<Props,State> {
     storage.get('username', (err:any, value:string) => {
       this.setState({myUsername: value})
     })
+    conversation.chating = true
+    conversation.onchange = () => {
+      this.setState({
+        messageList: conversation.conversations[this.state.username]
+      })
+    }
   }
 
   send():void {
@@ -65,16 +71,6 @@ export default class Me extends React.Component<Props,State> {
     })
     this.setState({message: ''})
   }
-  // renderMessageList():React.ReactNode {
-  //   var messages:any[] = []
-  //   this.state.messageList.forEach((messageItem:MessageItem, index:number) => {
-  //     messages.push(<Message key={index} message={messageItem.message} isMine={messageItem.isMine}/>)
-  //   })
-  //   return messages
-  // }
-  // renderMessageItem({item}) {
-  //   return (<Message message={item.message} isMine={item.isMine}/>)
-  // }
   renderAddOrSend():React.ReactNode {
     return this.state.message === '' ? (
       <TouchableOpacity activeOpacity={0.5} onPress={() => 1}>
