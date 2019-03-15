@@ -33,18 +33,23 @@ export default class Me extends React.Component<Props,State> {
       username: this.props.navigation.state.params.username,
       name: this.props.navigation.state.params.name
     }
+    this.props.navigation.addListener('didFocus', () => {
+      conversation.onchange = () => {
+        this.setState({
+          messageList: conversation.conversations[this.state.username]
+        })
+      }
+      conversation.onchange()
+    })
+    this.props.navigation.addListener('willBlur', () => {
+      conversation.onchange = null
+    })
   }
 
   componentDidMount():void {
     storage.get('username', (err:any, value:string) => {
       this.setState({myUsername: value})
     })
-    conversation.chating = true
-    conversation.onchange = () => {
-      this.setState({
-        messageList: conversation.conversations[this.state.username]
-      })
-    }
   }
 
   send():void {

@@ -6,12 +6,13 @@ import Head from '../compoents/head'
 import ChatBox from '../compoents/chatBox' 
 import Svg from '../compoents/svg'
 
+import conversation from '../utils/conversation'
+
 interface Props {
   navigation?: any
 }
 interface State {
-  chats: object[],
-  refreshing: boolean
+  chats: object[]
 }
 
 export default class Chats extends React.Component<Props,State> {
@@ -26,14 +27,31 @@ export default class Chats extends React.Component<Props,State> {
   constructor(props:any) {
     super(props)
     this.state = {
-      chats: [{name:'Nicholas',lastMessage:'hello',lastTime:'10:04PM'},{name:'wzq',lastMessage:'hello',lastTime:'22:04PM'}],
-      refreshing: false
+      chats: [],
     }
+    this.props.navigation.addListener('didFocus', () => {
+      conversation.onchange = () => {
+        let chats:object[] = []
+        Object.keys(conversation.conversations).forEach((key) => {
+          let chat = conversation.conversations[key]
+          chats.push({
+            name: 'littleV', //暂时写死
+            username: key,
+            lastMessage: chat[chat.length - 1].message,
+            lastTime: '10:00PM' //写死
+          })
+        })
+        this.setState({ chats })
+      }
+      conversation.onchange() // 先获取一次数据
+    })
+    this.props.navigation.addListener('willBlur', () => {
+      conversation.onchange = null
+    })
   }
 
-  // connect() {
-    /* do sth */
-  // }
+  componentDidMount():void {
+  }
 
   renderItem(data:any) {
     let item = data.item
@@ -42,7 +60,7 @@ export default class Chats extends React.Component<Props,State> {
         title={item.name}
         lastMessage={item.lastMessage}
         lastTime={item.lastTime}
-        username={'username'}
+        username={item.username}
       />
     )
   }
@@ -53,30 +71,12 @@ export default class Chats extends React.Component<Props,State> {
         <StatusBar/>
         <Head title='Vchat'/>
         <FlatList
-          // refreshing={this.state.refreshing}
-          // onRefresh={() => this.connect()}
           data={this.state.chats}
           renderItem={this.renderItem}
           extraData={this.state}
           keyExtractor={(item:any, index:any) => index.toString()}
         />
-        {/* <ChatBox
-          title={'Nicholas'}
-          lastMessage={'hello'}
-          lastTime={'10:04PM'}
-        />
-        <ChatBox
-          title={'wzq'}
-          lastMessage={'hello'}
-          lastTime={'22:04PM'}
-        /> */}
       </View>
     )
   }
 }
-
-// const styles = StyleSheet.create({
-//   hi: {
-//     fontSize: 16
-//   }
-// })

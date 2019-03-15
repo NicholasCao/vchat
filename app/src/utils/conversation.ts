@@ -5,7 +5,6 @@ storage.clear()
 const conversation:any = {
   // conversation改变时触发
   onchange: null,
-  chating: false,
   conversations: {username: [{isMine: false,message: 'hello' }]},
   getConversations() {
     storage.get('conversations', (err:any, object:any) => {
@@ -31,8 +30,9 @@ const conversation:any = {
     })
   },
   conversationChange() {
-    if(!this.chating) return
-    if(this.onchange) this.onchange()
+    if(this.onchange)this.onchange()
+    console.log('调用了onchange')
+    console.log(this.onchange)
   }
 }
 
