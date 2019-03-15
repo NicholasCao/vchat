@@ -69,7 +69,7 @@ export default class Chats extends React.Component<Props,State> {
     return (
       <View>
         <StatusBar/>
-        <Head title='Vchat'/>
+        <Head title={'Vchat'}/>
         <FlatList
           data={this.state.chats}
           renderItem={this.renderItem}

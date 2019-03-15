@@ -5,7 +5,8 @@ import { Image, TouchableHighlight, StyleSheet, Text, View } from "react-native"
 import Svg from './svg'
 
 interface Props {
-  title: string
+  title: string,
+  noIcon?: boolean
 }
 export default class ChatBox extends React.Component<Props,any> {
   constructor(props:any) {
@@ -17,14 +18,17 @@ export default class ChatBox extends React.Component<Props,any> {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{this.props.title}</Text>
-        <View style={styles.icons}>
-        <TouchableHighlight style={styles.search}>
-            <Svg icon={'search'} size={20}/>
-        </TouchableHighlight>
-          <TouchableHighlight>
-            <Svg icon={'add'} size={22}/>
-          </TouchableHighlight>
-        </View>
+        {
+          this.props.noIcon ? null :
+          (<View style={styles.icons}>
+            <TouchableHighlight style={styles.search}>
+                <Svg icon={'search'} size={20}/>
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Svg icon={'add'} size={22}/>
+            </TouchableHighlight>
+          </View>)
+        }
       </View>
     )
   }
