@@ -43,14 +43,24 @@ export default class Chats extends React.Component<Props,State> {
         })
         this.setState({ chats })
       }
-      conversation.onchange() // 先获取一次数据
     })
     this.props.navigation.addListener('willBlur', () => {
       conversation.onchange = null
     })
   }
-
+  // 先获取一次数据
   componentDidMount():void {
+    let chats:object[] = []
+    Object.keys(conversation.conversations).forEach((key) => {
+      let chat = conversation.conversations[key]
+      chats.push({
+        name: 'littleV', //暂时写死
+        username: key,
+        lastMessage: chat[chat.length - 1].message,
+        lastTime: '10:00PM' //写死
+      })
+    })
+    this.setState({ chats })
   }
 
   renderItem(data:any) {

@@ -76,7 +76,6 @@ export default class Login extends React.Component<Props,any> {
       headers
     }).then(res => res.json())
     .then(json => {
-      console.log(json)
       if(json.success){
         this.props.navigation.navigate('Home')
         storage.set('token', json.token)
