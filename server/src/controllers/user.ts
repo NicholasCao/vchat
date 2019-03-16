@@ -191,7 +191,7 @@ const addFriend = async (ctx:any) => {
 // 搜索用户
 const search = async (ctx:any) => {
   const { username } = ctx.params
-  let user:any = await User.findOne({ username }, ['name', 'username', '_id', 'contacts'])
+  let user:any = await User.findOne({ username }, ['name', 'username', '_id'])
   .catch(err => {
     console.log(err)
   })
