@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import {createStackNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation';
-// import {StackNavigator,} from "react-navigation";
+import * as React from 'react'
+import { Platform, StyleSheet, Text, View } from 'react-native'
+import {createStackNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation'
 
 import Login from './views/login'
 import Chats from './views/chats'
@@ -11,7 +10,8 @@ import Me from './views/me'
 import Chating from './views/chating'
 import Profile from './views/profile'
 import Moments from './views/moments'
-import config from './config'
+import AddContacts from './views/addContacts'
+
 type Props = {};
 
 const TabNavigator = createBottomTabNavigator({
@@ -28,18 +28,16 @@ const TabNavigator = createBottomTabNavigator({
 });
 
 const App = createStackNavigator({
-  Login: {screen: Login},
-  Home: {screen: TabNavigator},
-  // Login: {screen: Login},
-  Chating: {screen: Chating},
-  Profile: {screen: Profile},
-  Moments: {screen: Moments}
+  // AddContacts: { screen:AddContacts },
+  Login: { screen: Login },
+  Home: { screen: TabNavigator },
+  // Login: { screen: Login },
+  Chating: { screen: Chating },
+  AddContacts: { screen:AddContacts },
+  Profile: { screen: Profile },
+  Moments: { screen: Moments }
 }, {
   headerMode: 'none', // 此参数设置不渲染顶部的导航条
 })
 
-// export default {
-//   app: createAppContainer(App),
-//   ws: new WebSocket('ws://' + config.root + '/msg')
-// }
 export default createAppContainer(App)
