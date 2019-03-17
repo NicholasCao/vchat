@@ -10,8 +10,6 @@ import Profile from './views/profile'
 import Moments from './views/moments'
 import AddContacts from './views/addContacts'
 
-type Props = {};
-
 const TabNavigator = createBottomTabNavigator({
   Chats,
   Contacts,
