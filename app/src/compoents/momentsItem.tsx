@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Dimensions, Image, TouchableOpacity, TouchableHighlight, StyleSheet, Text, View } from "react-native"
+import * as React from 'react'
+import { Dimensions, Image, TouchableOpacity, TouchableHighlight, StyleSheet, Text, View } from 'react-native'
 import Svg from './svg'
 const { width, height } = Dimensions.get('window')
 
@@ -21,7 +21,7 @@ export default class MomentsItem extends React.Component<any,any> {
       for (let i = start; i < end; i++) {
         if (i < imagesUri.length){
           images.push (
-            <TouchableOpacity key={"image-" + i} activeOpacity={0.6}
+            <TouchableOpacity key={'image-' + i} activeOpacity={0.6}
             onPress={() => 1}>
               <Image source={require('../../static/moment.jpg')} style={imagesStyles.image}/>
             </TouchableOpacity>
@@ -29,7 +29,7 @@ export default class MomentsItem extends React.Component<any,any> {
         }
       }
     return (
-      <View key={"row-" + (start/3)} style={imagesStyles.imageRow}>
+      <View key={'row-' + (start/3)} style={imagesStyles.imageRow}>
         {images}
       </View>
     )

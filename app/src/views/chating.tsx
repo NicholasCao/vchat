@@ -1,5 +1,5 @@
-import * as React from "react"
-import { FlatList, TextInput, TouchableHighlight, StyleSheet, Text, View, TouchableOpacity } from "react-native"
+import * as React from 'react'
+import { FlatList, TextInput, TouchableHighlight, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import Svg from '../compoents/svg'
 import Message from '../compoents/message'

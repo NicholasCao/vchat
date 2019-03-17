@@ -1,5 +1,5 @@
-import * as React from "react"
-import { TextInput, TouchableOpacity, StyleSheet, Text, View, KeyboardAvoidingView } from "react-native"
+import * as React from 'react'
+import { TextInput, TouchableOpacity, StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native'
 // import { NavigationActions } from 'react-navigation';
 
 import config from '../config'
@@ -25,7 +25,7 @@ export default class Login extends React.Component<Props,any> {
         <Text style={styles.head}>Vchat</Text>
         <Text style={styles.welcome}>Welcome back,</Text>
         <Text style={styles.continue}>sign in to continue to Vchat.</Text>
-        <KeyboardAvoidingView behavior="padding">
+        <KeyboardAvoidingView behavior='padding'>
           <TextInput
             style={styles.username}
             value={this.state.username}
@@ -36,7 +36,7 @@ export default class Login extends React.Component<Props,any> {
             underlineColorAndroid={'transparent'}
           />
         </KeyboardAvoidingView>
-        <KeyboardAvoidingView behavior="padding">
+        <KeyboardAvoidingView behavior='padding'>
           <TextInput
             style={styles.password}
             value={this.state.password}

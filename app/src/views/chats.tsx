@@ -1,5 +1,5 @@
-import * as React from "react"
-import { FlatList, TouchableOpacity, StyleSheet, Text, View } from "react-native"
+import * as React from 'react'
+import { FlatList, TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 
 import StatusBar from '../compoents/statusBar'
 import Head from '../compoents/head'

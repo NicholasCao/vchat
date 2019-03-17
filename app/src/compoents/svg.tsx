@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 import SvgUri from 'react-native-svg-uri'
 import svgs from '../../static/svgs'
 interface Props {
@@ -12,7 +12,7 @@ export default class Svg extends React.Component<Props,any> {
     let svgXmlData = svgs[this.props.icon]
 
     if (!svgXmlData) {
-      let err_msg = `没有"${this.props.icon}"`
+      let err_msg = `没有${this.props.icon}`
       throw new Error(err_msg)
     }
     return this.props.fill ? 

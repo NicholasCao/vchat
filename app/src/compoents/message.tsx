@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Image, TouchableOpacity, StyleSheet, Text, View } from "react-native"
+import * as React from 'react'
+import { Image, TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 import { withNavigation } from 'react-navigation'
 interface Props {
   message: string,

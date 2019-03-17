@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Image, TouchableHighlight, StyleSheet, Text, View } from "react-native"
+import * as React from 'react'
+import { Image, TouchableHighlight, StyleSheet, Text, View } from 'react-native'
 import { withNavigation } from 'react-navigation'
 
 import Svg from './svg'

@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Dimensions, Image, TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
+import * as React from 'react'
+import { Dimensions, Image, TextInput, TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 
 import MomentsItem from '../compoents/momentsItem'
 

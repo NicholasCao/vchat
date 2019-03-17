@@ -1,5 +1,5 @@
-import * as React from "react"
-import { TextInput, TouchableOpacity, StyleSheet, Text, View } from "react-native"
+import * as React from 'react'
+import { TextInput, TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 
 import Svg from '../compoents/svg'
 
