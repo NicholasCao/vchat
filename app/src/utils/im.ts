@@ -1,7 +1,6 @@
 import config from '../config'
 import storage from './storage'
 import conversation from './conversation'
-import chatBox from '../compoents/chatBox';
 
 const wsUrl = `wss://${config.root}/msg`
 
