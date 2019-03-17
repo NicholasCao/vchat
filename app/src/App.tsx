@@ -1,5 +1,3 @@
-import * as React from 'react'
-import { Platform, StyleSheet, Text, View } from 'react-native'
 import {createStackNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation'
 
 import Login from './views/login'
@@ -37,7 +35,7 @@ const App = createStackNavigator({
   Profile: { screen: Profile },
   Moments: { screen: Moments }
 }, {
-  headerMode: 'none', // 此参数设置不渲染顶部的导航条
+  headerMode: 'none', //不渲染顶部的导航条
 })
 
 export default createAppContainer(App)
