@@ -23,6 +23,9 @@ export default class Profile extends React.Component<Props,any> {
     }).then(res => res.json())
     .then(json => {
       console.log(json)
+      if(json.success){
+        this.props.navigation.navigate('Profile')
+      }
     })
   }
   render():React.ReactNode {

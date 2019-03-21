@@ -1,11 +1,9 @@
 import * as React from 'react'
 import { StatusBar } from 'react-native'
 interface Props {
-  message: string,
-  isMine: boolean,
-  navigation?: any
+  color?: string
 }
-export default class MyStatusBar extends React.Component<any,any> {
+export default class MyStatusBar extends React.Component<Props,any> {
   constructor(props:any) {
     super(props)
     this.state = {
@@ -13,7 +11,7 @@ export default class MyStatusBar extends React.Component<any,any> {
   }
   render():React.ReactNode {
     return (
-      <StatusBar barStyle={'dark-content'} backgroundColor='#EDEDED' />
+      <StatusBar barStyle={'dark-content'} backgroundColor={this.props.color ? this.props.color : '#EDEDED'} />
     )
   }
 }
