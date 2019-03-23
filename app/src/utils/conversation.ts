@@ -2,6 +2,8 @@ import storage from './storage'
 
 // dev状态下清除缓存
 storage.clear()
+
+// 事件驱动 -> 动态更新
 const conversation:any = {
   // conversation改变时触发
   onchange: null,
