@@ -1,4 +1,5 @@
 # before
+> window
 npm install cross-env -g
 
 # ws
