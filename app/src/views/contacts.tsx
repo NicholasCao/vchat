@@ -25,7 +25,6 @@ export default class Contacts extends React.Component<Props,State> {
     super(props)
     this.state = {
       contacts: [],
-      // refreshing: false
     }
   }
 
@@ -34,16 +33,10 @@ export default class Contacts extends React.Component<Props,State> {
       this.setState({contacts: data})
     })
   }
-
-  // loadContacts() {
-  //   if(!this.state.refreshing){
-  //     this.setState({contacts: [{name:'a'}, {name: 'b'},{name: 'c'}]})
-  //   }
-  // }
-  
-  renderItem(data:any) {
+  // 使用箭头函数使this指向 Contacts
+  renderItem = (data:any) => {
     return (
-      <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
+      <TouchableHighlight onPress={() => this.viewProfile(data.item.username, data.item.name)} underlayColor={'#E8E8E8'}>
         <View style={styles.container}>
           <Image
             style={styles.avater}
@@ -56,24 +49,13 @@ export default class Contacts extends React.Component<Props,State> {
       </TouchableHighlight>
     )
   }
+  
 
   render():React.ReactNode {
     return (
       <View>
         <Head title='Contacts'/>
-        {/* <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
-          <View style={styles.container}>
-            <View>
-              <Image
-                style={styles.avater}
-                source={require('../../static/avatar.jpg')}
-              />
-            </View>
-            <Text style={styles.name}>
-              Nicholas
-            </Text>
-          </View>
-        </TouchableHighlight> */}
+
         <FlatList
           // refreshing={this.state.refreshing}
           // onRefresh={() => this.loadContacts()}
@@ -84,6 +66,14 @@ export default class Contacts extends React.Component<Props,State> {
         />
       </View>
     )
+  }
+
+  viewProfile(username:any, name:any):void {
+    this.props.navigation.navigate('Profile', {
+      username,
+      name,
+      isFriend: true
+    })
   }
 }
 

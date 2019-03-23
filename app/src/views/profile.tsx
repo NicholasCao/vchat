@@ -16,17 +16,18 @@ export default class Profile extends React.Component<Props,State> {
   constructor(props:any) {
     super(props)
     this.state = {
-      name: 'nicholas',
-      username: 'hhh',
-      isFriend: true
+      name: this.props.navigation.state.params.name,
+      username: this.props.navigation.state.params.username,
+      isFriend: this.props.navigation.state.params.isFriend
     }
   }
+
   render():React.ReactNode {
     return (
       <View style={styles.container}>
         <StatusBar color={'#FFF'}/>
         <View style={styles.header}>
-          <TouchableHighlight onPress={() => 1} style={styles.back} underlayColor={'#DDD'}>
+          <TouchableHighlight onPress={() => this.props.navigation.goBack()} style={styles.back} underlayColor={'#DDD'}>
             <Svg icon={'back'} size={23} />
           </TouchableHighlight>
         </View>
@@ -58,7 +59,7 @@ export default class Profile extends React.Component<Props,State> {
         </TouchableHighlight>
         {
           this.state.isFriend ? (
-          <TouchableHighlight onPress={() => 1} style={styles.button} underlayColor={'#DDD'}>
+          <TouchableHighlight onPress={() => this.chat()} style={styles.button} underlayColor={'#DDD'}>
             <Text style={styles.buttonText}>Send Message</Text>
           </TouchableHighlight>
           ) : (
@@ -69,6 +70,12 @@ export default class Profile extends React.Component<Props,State> {
         }
       </View>
     )
+  }
+  chat():void {
+    this.props.navigation.navigate('Chating', {
+      username: this.state.username,
+      name: this.state.name
+    })
   }
 }
 

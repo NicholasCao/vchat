@@ -2,6 +2,7 @@ import * as React from 'react'
 import { FlatList, TextInput, TouchableHighlight, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import Svg from '../compoents/svg'
+import StatusBar from '../compoents/statusBar'
 import Message from '../compoents/message'
 import im from '../utils/im'
 import storage from '../utils/storage'
@@ -53,15 +54,6 @@ export default class Me extends React.Component<Props,State> {
   }
 
   send():void {
-    // this.setState((previousState:any) => { 
-    //   var messageList = previousState.messageList
-    //   var newMessageItem:MessageItem = {
-    //     message: this.state.message,
-    //     isMine: true
-    //   }
-    //   messageList.push(newMessageItem)
-    //   return { messageList }
-    // })
     console.log({
       type: 'text',
       content: this.state.message,
@@ -76,6 +68,15 @@ export default class Me extends React.Component<Props,State> {
     })
     this.setState({message: ''})
   }
+
+  viewProfile():void {
+    this.props.navigation.navigate('Profile', {
+      username: this.state.username,
+      name: this.state.name,
+      isFriend: true
+    })
+  }
+
   renderAddOrSend():React.ReactNode {
     return this.state.message === '' ? (
       <TouchableOpacity activeOpacity={0.5} onPress={() => 1}>
@@ -90,6 +91,7 @@ export default class Me extends React.Component<Props,State> {
   render():React.ReactNode {
     return (
       <View style={styles.container}>
+        <StatusBar/>
         <View style={styles.head}>
           <TouchableHighlight onPress={() => this.props.navigation.goBack()} underlayColor={'#E8E8E8'}>
             <View style={styles.back}>
@@ -99,7 +101,7 @@ export default class Me extends React.Component<Props,State> {
           <View>
             <Text style={styles.alias}>{this.state.name}</Text>
           </View>
-          <TouchableHighlight onPress={() => this.props.navigation.navigate('Profile')} underlayColor={'#E8E8E8'} style={styles.more}>
+          <TouchableHighlight onPress={() => this.viewProfile()} underlayColor={'#E8E8E8'} style={styles.more}>
             <Svg icon={'more'} size={28}/>
           </TouchableHighlight>
         </View>

@@ -74,7 +74,8 @@ export default class Login extends React.Component<Props,any> {
         password
       }),
       headers
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
     .then(json => {
       if(json.success){
         this.props.navigation.navigate('Home')
@@ -86,9 +87,7 @@ export default class Login extends React.Component<Props,any> {
         im.createWs()
       }
     })
-    .catch((error)=>{
-      console.log(error)
-    })
+    .catch(e => console.log(e))
   }
   signUp():void {
     console.log(1)
