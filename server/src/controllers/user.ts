@@ -151,16 +151,27 @@ const signUp = async (ctx:any) => {
   }
 }
 
+/*
+/ 尝试添加好友
+/ @param username 申请人的用户名
+/ @param friendUsername 好友用户名
+*/
+const tryFriend = async (ctx:any) => {
+  const  { username, friendUsername } = ctx.request.body
+  global.userWsList.get(friendUsername).send(JSON.stringify({username, info: 'add'}), (err:any) => {
+    if (err) console.log(`[SERVER] error: ${err}`)
+  })
+}
 
 /*
-/ 添加好友(已同意)
-/ @param _id 同意的人ID
+/ 同意添加好友
+/ @param username 同意的人的用户名
 / @param friendUsername 申请人的用户名
-/ @return  friend
+/ @return friend
 */
-const addFriend = async (ctx:any) => {
-  const  { _id, friendUsername } = ctx.request.body
-  let user:any = await User.findOne({ _id }, ['name', 'username', '_id', 'contacts']).catch(err => {
+const accept = async (ctx:any) => {
+  const  { username, friendUsername } = ctx.request.body
+  let user:any = await User.findOne({ username }, ['name', 'username', '_id', 'contacts']).catch(err => {
     console.log(err)
   })
   let friend:any = await User.findOne({ friendUsername }, ['name', 'username', '_id', 'contacts']).catch(err => {
@@ -177,7 +188,9 @@ const addFriend = async (ctx:any) => {
       friend: result2
     }
     // ws通知申请人并发送接受者的用户信息
-    // result1
+    global.userWsList.get(friendUsername).send(JSON.stringify({username, info: 'accept', user: result1}), (err:any) => {
+      if (err) console.log(`[SERVER] error: ${err}`)
+    })
   }
   catch(err) {
     console.log(err)
@@ -186,6 +199,18 @@ const addFriend = async (ctx:any) => {
       info: err
     }
   }
+}
+
+/*
+/ 拒绝添加好友
+/ @param username 申请人的用户名
+*/
+const reject = async (ctx:any) => {
+  const  { username } = ctx.request.body
+  // ws通知申请人被拒
+  global.userWsList.get(username).send(JSON.stringify({info: 'reject'}), (err:any) => {
+    if (err) console.log(`[SERVER] error: ${err}`)
+  })
 }
 
 // 搜索用户
@@ -210,6 +235,8 @@ const search = async (ctx:any) => {
 export default {
   login,
   signUp,
-  addFriend,
-  search
+  tryFriend,
+  accept,
+  reject,
+  search,
 }

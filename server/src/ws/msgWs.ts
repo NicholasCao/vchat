@@ -1,10 +1,10 @@
 import * as WebSocket from 'ws'
-import user from '../models/user';
+import user from '../models/user'
 
 const msgWs = new WebSocket.Server({ noServer: true })
 
 msgWs.on('connection', (ws) => {
-	console.log(`[SERVER] connection()`)
+	console.log(`[MESSAGE_WS] connection()`)
 
 	ws.on('message', (msg:string) => {
 		if(msg == 'ping'){ // 心跳
@@ -18,10 +18,10 @@ msgWs.on('connection', (ws) => {
 		if(data.username){// 加入在线列表
 			username = data.username
 			console.log(`${username}连接`)
-			global.users.set(data.username, ws)
+			global.msgWsList.set(data.username, ws)
 		} else {
-			if(global.users.get(data.to)){ // 对方在线
-				global.users.get(data.to).send(JSON.stringify(data), (err:any) => {
+			if(global.msgWsList.get(data.to)){ // 对方在线
+				global.msgWsList.get(data.to).send(JSON.stringify(data), (err:any) => {
 					if (err) console.log(`[SERVER] error: ${err}`)
 				})
 			} else { // 不在线
@@ -33,12 +33,12 @@ msgWs.on('connection', (ws) => {
 	ws.on('close',() => {
 		// 断开连接时删除对应的user
 		let username
-		global.users.forEach(function(value, key, map) {
+		global.msgWsList.forEach(function(value, key, map) {
 			if(value == ws){
 				username = key
 			}
 		})
-		global.users.delete(username)
+		global.msgWsList.delete(username)
 		console.log(`${username}断开连接`)
 	})
 })

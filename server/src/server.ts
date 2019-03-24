@@ -28,11 +28,13 @@ const server = http.createServer(app.callback())
 declare global {
 	namespace NodeJS {
 		interface Global {
-			users: Map<string,any>
+      msgWsList: Map<string,any>,
+      userWsList: Map<string,any>
 		}
 	}
 }
-global.users = new Map()
+global.msgWsList = new Map()
+global.userWsList = new Map()
 
 // ws router
 server.on('upgrade', (request, socket, head) => {
