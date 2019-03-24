@@ -1,9 +1,7 @@
 import * as Koa from 'koa'
-import * as Router from 'koa-router'
 import * as bodyParser from 'koa-bodyparser'
 import * as json from 'koa-json'
 import * as http from 'http'
-import * as WebSocket from 'ws'
 import * as url from 'url'
 import * as mongoose from 'mongoose'
 
