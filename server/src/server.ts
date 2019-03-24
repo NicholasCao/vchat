@@ -13,8 +13,8 @@ import msgWs from './ws/msgWs'
 import userWs from './ws/userWs'
 
 mongoose.connect(config.db, { useNewUrlParser: true })
-mongoose.connection.on("error", console.error)
-mongoose.connection.on("open", () => console.log("MongoDB connection successed"))
+mongoose.connection.on('error', console.error)
+mongoose.connection.on('open', () => console.log('MongoDB connection successed'))
 
 const app = new Koa(),
   router = api.prefix('/vchat')

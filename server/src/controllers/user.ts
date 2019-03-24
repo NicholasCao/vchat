@@ -54,17 +54,17 @@ littleV.init()
 */
 const login = async (ctx:any) => {
   const { username, password } = ctx.request.body
-  if(new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username) && new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)){
+  if (new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username) && new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)) {
     let user:any = await User.findOne({ username })
     .catch(err => {
       console.log(err)
     })
-    if(user != null) {
-      if(password == user.password) {
+    if (user != null) {
+      if (password == user.password) {
         const token = jwt.sign({
           _id: user._id,
         }, config.secret)
-        let contacts = await User.find({'username': {'$in': user.contacts}}, ['username', 'name', '_id'])
+        let contacts = await User.find({'username': {'$in': user.contacts}}, ['username', 'name', '_id']).catch(e => console.log(e))
         ctx.body = {
           success: true,
           user,
@@ -105,19 +105,17 @@ const login = async (ctx:any) => {
 const signUp = async (ctx:any) => {
   const { username, password, name } = ctx.request.body
   // 检测名字
-  if(!new RegExp(/^[\S|\d]{0,10}$/).test(name)){
+  if (!new RegExp(/^[\S|\d]{0,10}$/).test(name)) {
     ctx.body = {
       success: false,
       info: '名字不合法'
     }
-  }
-  // 检测用户名和密码
-  else if(!new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username)){
+  } else if (!new RegExp(/^[A-Za-z0-9]{6,10}$/).test(username)) {  // 检测用户名和密码
     ctx.body = {
       success: false,
       info: '用户名应为6-10位英文字符或数字'
     }
-  } else if(!new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)){
+  } else if (!new RegExp(/^[A-Za-z0-9]{6,10}$/).test(password)) {
     ctx.body = {
       success: false,
       info: '密码应为6-12位英文字符或数字'
@@ -127,7 +125,7 @@ const signUp = async (ctx:any) => {
     .catch(err => {
       console.log(err)
     })
-    if(user != null) {
+    if (user != null) {
       ctx.body = {
         success: false,
         info: 'username already exists'
@@ -158,9 +156,13 @@ const signUp = async (ctx:any) => {
 */
 const tryFriend = async (ctx:any) => {
   const  { username, friendUsername } = ctx.request.body
-  global.userWsList.get(friendUsername).send(JSON.stringify({username, info: 'add'}), (err:any) => {
-    if (err) console.log(`[SERVER] error: ${err}`)
-  })
+  if (global.userWsList.get(friendUsername)) {
+    global.userWsList.get(friendUsername).send(JSON.stringify({username, info: 'add'}), (err:any) => {
+      if (err) console.log(`[SERVER] error: ${err}`)
+    })
+  } else {
+    console.log(`${friendUsername}不在线`)
+  }
 }
 
 /*
@@ -171,15 +173,17 @@ const tryFriend = async (ctx:any) => {
 */
 const accept = async (ctx:any) => {
   const  { username, friendUsername } = ctx.request.body
-  let user:any = await User.findOne({ username }, ['name', 'username', '_id', 'contacts']).catch(err => {
+  let user:any = await User.findOne({ username }, ['name', 'username', '_id', 'contacts'])
+  .catch(err => {
     console.log(err)
   })
-  let friend:any = await User.findOne({ friendUsername }, ['name', 'username', '_id', 'contacts']).catch(err => {
+  let friend:any = await User.findOne({ username: friendUsername }, ['name', 'username', '_id', 'contacts'])
+  .catch(err => {
     console.log(err)
   })
-  user.contacts = user.contacts.push(friend)
-  friend.contacts = user.contacts.push(user)
   try{
+    user.contacts.push(friendUsername)
+    friend.contacts.push(username)
     let result1 = await user.save()
     let result2 = await friend.save()
     // 将申请人的用户信息返回
@@ -188,9 +192,14 @@ const accept = async (ctx:any) => {
       friend: result2
     }
     // ws通知申请人并发送接受者的用户信息
-    global.userWsList.get(friendUsername).send(JSON.stringify({username, info: 'accept', user: result1}), (err:any) => {
-      if (err) console.log(`[SERVER] error: ${err}`)
-    })
+    if (global.userWsList.get(friendUsername)) {
+      global.userWsList.get(friendUsername).send(JSON.stringify({username, info: 'accept', user: result1}), (err:any) => {
+        if (err) console.log(`[SERVER] error: ${err}`)
+      })
+    } else {
+      // 用户不在线
+      console.log(`${friendUsername}不在线`)
+    }
   }
   catch(err) {
     console.log(err)
@@ -220,7 +229,7 @@ const search = async (ctx:any) => {
   .catch(err => {
     console.log(err)
   })
-  if(user != null) {
+  if (user != null) {
     ctx.body = {
       success: true,
       user: user
