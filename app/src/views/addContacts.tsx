@@ -14,7 +14,7 @@ interface State{
   friendUsername: string,
   username: string,
   contacts: any[],
-  result: ''
+  result: string
 }
 export default class Profile extends React.Component<Props,State> {
   constructor(props:any) {
@@ -50,7 +50,7 @@ export default class Profile extends React.Component<Props,State> {
           isFriend: this.state.contacts.indexOf(this.state.username) !== -1
         })
       } else {
-        this.setState({ result: 'User not found' })
+        this.setState({ result: `User Not Found` })
       }
     })
     .catch(e => console.log(e))

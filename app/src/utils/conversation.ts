@@ -7,7 +7,7 @@ storage.clear()
 const conversation:any = {
   // conversation改变时触发
   onchange: null,
-  conversations: {username: [{isMine: false,message: 'hello' }]},
+  conversations: {littleV: [{isMine: false,message: 'hello' }]},
   getConversations() {
     storage.get('conversations', (err:any, object:any) => {
       this.conversations = object
@@ -26,15 +26,13 @@ const conversation:any = {
       if(!object[username]) object[username] = []
       object[username].push(msg)
       this.conversations = object
-      console.log(object)
       storage.set('conversations', object)
       this.conversationChange()
     })
   },
   conversationChange() {
     if(this.onchange)this.onchange()
-    console.log('调用了onchange')
-    console.log(this.onchange)
+    console.log('onchange!')
   }
 }
 

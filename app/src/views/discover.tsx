@@ -30,6 +30,9 @@ export default class Discover extends React.Component<Props,any> {
             <Text style={styles.momentsText}>
               Moments
             </Text>
+            <View style={styles.go}>
+              <Svg icon={'go'} size={20}/>
+            </View>
           </View>
         </TouchableHighlight>
       </View>
@@ -54,5 +57,8 @@ const styles = StyleSheet.create({
     color: '#333',
     marginLeft: 12,
     fontSize: 20
+  },
+  go: {
+    marginLeft: 'auto'
   }
 })

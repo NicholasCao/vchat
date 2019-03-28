@@ -55,10 +55,28 @@ export default class Contacts extends React.Component<Props,State> {
     return (
       <View>
         <Head title='Contacts'/>
-
+        <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
+          <View style={styles.container}>
+            <View style={styles.svgIcon}>
+              <Svg icon={'newFriends'} size={36}/>
+            </View>
+            <Text style={styles.name}>
+              New Friends
+            </Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
+          <View style={styles.container}>
+            <View style={styles.svgIcon}>
+              <Svg icon={'groupChats'} size={36}/>
+            </View>
+            <Text style={styles.name}>
+              Group Chats
+            </Text>
+          </View>
+        </TouchableHighlight>
+        <View style={styles.else}></View>
         <FlatList
-          // refreshing={this.state.refreshing}
-          // onRefresh={() => this.loadContacts()}
           data={this.state.contacts}
           renderItem={this.renderItem}
           extraData={this.state}
@@ -84,6 +102,9 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingBottom: 0
   },
+  svgIcon: {
+    borderRadius: 4 // don't work
+  },
   avater: {
     width: 36,
     height: 36,
@@ -99,5 +120,9 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     paddingTop: 12,
     flex: 1
+  },
+  else: {
+    backgroundColor: '#E8E8E8',
+    height: 20
   }
 })

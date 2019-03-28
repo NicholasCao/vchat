@@ -7,12 +7,15 @@ import ChatBox from '../compoents/chatBox'
 import Svg from '../compoents/svg'
 
 import conversation from '../utils/conversation'
+import contacts from '../utils/contacts'
+import storage from '../utils/storage'
 
 interface Props {
   navigation?: any
 }
 interface State {
-  chats: object[]
+  chats: object[],
+  contacts: any
 }
 
 export default class Chats extends React.Component<Props,State> {
@@ -26,16 +29,24 @@ export default class Chats extends React.Component<Props,State> {
   }
   constructor(props:any) {
     super(props)
+    // contacts数组转为对象
+    let contactsArray = this.props.navigation.state.params.contacts,
+    contacts:any = {}
+    for ( let v of contactsArray){
+      contacts[v.username] = v
+    }
     this.state = {
       chats: [],
+      contacts: contacts
     }
+    // 路由生命周期
     this.props.navigation.addListener('didFocus', () => {
       conversation.onchange = () => {
         let chats:object[] = []
         Object.keys(conversation.conversations).forEach((key) => {
           let chat = conversation.conversations[key]
           chats.push({
-            name: 'littleV', //暂时写死
+            name: '1',
             username: key,
             lastMessage: chat[chat.length - 1].message,
             lastTime: '10:00PM' //写死
@@ -53,8 +64,9 @@ export default class Chats extends React.Component<Props,State> {
     let chats:object[] = []
     Object.keys(conversation.conversations).forEach((key) => {
       let chat = conversation.conversations[key]
+      console.log(key)
       chats.push({
-        name: 'littleV', //暂时写死
+        name: this.state.contacts[key].name,
         username: key,
         lastMessage: chat[chat.length - 1].message,
         lastTime: '10:00PM' //写死

@@ -5,6 +5,7 @@ import { TextInput, TouchableOpacity, StyleSheet, Text, View, KeyboardAvoidingVi
 import config from '../config'
 import storage from '../utils/storage'
 import im from '../utils/im'
+import contacts from '../utils/contacts'
 
 // type Props = {};
 interface Props {
@@ -78,7 +79,10 @@ export default class Login extends React.Component<Props,any> {
     .then(res => res.json())
     .then(json => {
       if(json.success){
-        this.props.navigation.navigate('Home')
+        console.log(json)
+        this.props.navigation.navigate('Home', {
+          contacts: json.contacts
+        })
         storage.set('token', json.token)
         storage.set('username', json.user.username)
         storage.set('password', json.user.password)
