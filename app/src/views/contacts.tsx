@@ -55,7 +55,7 @@ export default class Contacts extends React.Component<Props,State> {
     return (
       <View>
         <Head title='Contacts'/>
-        <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('NewFriend')} underlayColor={'#E8E8E8'}>
           <View style={styles.container}>
             <View style={styles.svgIcon}>
               <Svg icon={'newFriends'} size={33}/>
@@ -65,7 +65,7 @@ export default class Contacts extends React.Component<Props,State> {
             </Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => 1} underlayColor={'#E8E8E8'}>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('GroupChats')} underlayColor={'#E8E8E8'}>
           <View style={styles.container}>
             <View style={styles.svgIcon}>
               <Svg icon={'groupChats'} size={36}/>

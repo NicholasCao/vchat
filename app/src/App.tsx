@@ -9,6 +9,8 @@ import Chating from './views/chating'
 import Profile from './views/profile'
 import Moments from './views/moments'
 import AddContacts from './views/addContacts'
+import NewFriend from './views/newFriend'
+import GroupChats from './views/groupChat'
 
 const TabNavigator = createBottomTabNavigator({
   Chats,
@@ -31,7 +33,9 @@ const App = createStackNavigator({
   Chating: { screen: Chating },
   AddContacts: { screen:AddContacts },
   Profile: { screen: Profile },
-  Moments: { screen: Moments }
+  Moments: { screen: Moments },
+  NewFriend: { screen: NewFriend },
+  GroupChats: { screen: GroupChats }
 }, {
   headerMode: 'none', //不渲染顶部的导航条
 })
