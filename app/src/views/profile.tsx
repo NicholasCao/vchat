@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
   userInfo: {
     flexDirection: 'row',
     backgroundColor: '#FFF'
-    // padding: 10
   },
   avater: {
     width: 65,
@@ -123,6 +122,7 @@ const styles = StyleSheet.create({
   },
   edit: {
     flexDirection: 'row',
+    alignItems: 'center',
     padding: 15,
   },
   editText: {
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
   },
   moment: {
     flexDirection: 'row',
+    alignItems: 'center',
     padding: 15,
   },
   momentText: {
