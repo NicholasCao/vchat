@@ -23,7 +23,8 @@ interface State {
   name: string
 }
 
-export default class Me extends React.Component<Props,State> {
+export default class Chating extends React.Component<Props,State> {
+  flatList: any
   constructor(props:any) {
     super(props)
     this.props.navigation.state.params
@@ -38,9 +39,8 @@ export default class Me extends React.Component<Props,State> {
       conversation.onchange = () => {
         this.setState({
           messageList: conversation.conversations[this.state.username]
-        })
+        }, this.flatList.scrollToEnd())
       }
-      conversation.onchange()
     })
     this.props.navigation.addListener('willBlur', () => {
       conversation.onchange = null
@@ -108,6 +108,7 @@ export default class Me extends React.Component<Props,State> {
         <View style={styles.chat}>
           {/* {this.renderMessageList()} */}
           <FlatList
+            ref={(FlatList) => { this.flatList = FlatList }}
             data={this.state.messageList}
             extraData={this.state}
             keyExtractor={(item:any, index:any) => index.toString()}
