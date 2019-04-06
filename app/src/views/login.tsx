@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { TextInput, TouchableOpacity, StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native'
-// import { NavigationActions } from 'react-navigation';
+import Toast from 'react-native-root-toast'
 
 import config from '../config'
 import storage from '../utils/storage'
@@ -89,6 +89,8 @@ export default class Login extends React.Component<Props,any> {
         storage.set('id', json.user._id)
         storage.set('contacts', json.contacts)
         im.createWs()
+      } else {
+        Toast.show('This is a message', {})
       }
     })
     .catch(e => console.log(e))
